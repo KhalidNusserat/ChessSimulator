@@ -49,8 +49,18 @@ public class DefaultChessGameModel implements ChessGameModel {
     }
 
     @Override
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
+    @Override
     public Player getWinner() {
         return winner;
+    }
+
+    @Override
+    public void setWinner(Player winner) {
+        this.winner = winner;
     }
 
     @Override
@@ -61,15 +71,5 @@ public class DefaultChessGameModel implements ChessGameModel {
     @Override
     public Player getCurrentPlayer() {
         return currentPlayer;
-    }
-
-    @Override
-    public void setWinner(Player winner) {
-        this.winner = winner;
-    }
-
-    @Override
-    public void setDone(boolean done) {
-        isDone = done;
     }
 }

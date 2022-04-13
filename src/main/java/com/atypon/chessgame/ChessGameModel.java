@@ -13,13 +13,13 @@ public interface ChessGameModel {
 
     boolean isDone();
 
+    void setDone(boolean done);
+
     Player getWinner();
+
+    void setWinner(Player winner);
 
     Map<ChessColor, Player> getPlayers();
 
     Player getCurrentPlayer();
-
-    void setWinner(Player winner);
-
-    void setDone(boolean done);
 }

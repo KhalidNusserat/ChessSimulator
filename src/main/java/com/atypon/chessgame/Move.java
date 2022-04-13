@@ -1,4 +1,4 @@
 package com.atypon.chessgame;
 
-public record Move(Player player, BoardPosition from, BoardPosition to) {
+public record Move(ChessColor playerColor, BoardPosition from, BoardPosition to) {
 }
