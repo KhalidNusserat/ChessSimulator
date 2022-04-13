@@ -11,5 +11,5 @@ public interface MoveChecker {
 
     void addAllRules(MoveRule... moveRules);
 
-    boolean checkMove(Move move, ChessGameModel defaultChessGameModel);
+    boolean check(Move move, ChessGameModel defaultChessGameModel);
 }

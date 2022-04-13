@@ -15,7 +15,7 @@ public class DummyMoveCheckerTest {
         DummyMoveChecker dummyMoveChecker = new DummyMoveChecker();
         MoveParser parser = new DefaultMoveParser();
         assertTrue(
-                dummyMoveChecker.checkMove(
+                dummyMoveChecker.check(
                         parser.parse("move B1 B2", ChessColor.WHITE),
                         chessGameModel
                 )
