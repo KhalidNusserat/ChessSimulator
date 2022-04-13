@@ -2,11 +2,10 @@ package com.atypon.chessgame.model;
 
 import com.atypon.chessgame.utils.CachedLinkedHashSet;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class DefaultChessGameModel implements ChessGameModel {
-    private final Map<ChessColor, Player> players = new HashMap<>();
+    private final Player whitePlayer;
+
+    private final Player blackPlayer;
 
     private final CachedLinkedHashSet<BoardState> boardStates;
 
@@ -16,10 +15,9 @@ public class DefaultChessGameModel implements ChessGameModel {
 
     private boolean isDone;
 
-    public DefaultChessGameModel(String whitePlayer, String blackPlayer) {
-        players.put(ChessColor.WHITE, new Player(whitePlayer));
-        players.put(ChessColor.BLACK, new Player(blackPlayer));
-        currentPlayer = players.get(ChessColor.WHITE);
+    public DefaultChessGameModel(String whitePlayerName, String blackPlayerName) {
+        whitePlayer = new Player(whitePlayerName);
+        blackPlayer = new Player(blackPlayerName);
         boardStates = new CachedLinkedHashSet<>();
         boardStates.add(new StandardChessBoard());
     }
@@ -27,9 +25,9 @@ public class DefaultChessGameModel implements ChessGameModel {
     @Override
     public void changeTurns() {
         currentPlayer = (
-                currentPlayer == players.get(ChessColor.WHITE)
-                        ? players.get(ChessColor.BLACK)
-                        : players.get(ChessColor.WHITE)
+                currentPlayer == whitePlayer
+                        ? blackPlayer
+                        : whitePlayer
         );
     }
 
@@ -64,8 +62,13 @@ public class DefaultChessGameModel implements ChessGameModel {
     }
 
     @Override
-    public Map<ChessColor, Player> getPlayers() {
-        return players;
+    public Player getWhitePlayer() {
+        return whitePlayer;
+    }
+
+    @Override
+    public Player getBlackPlayer() {
+        return blackPlayer;
     }
 
     @Override

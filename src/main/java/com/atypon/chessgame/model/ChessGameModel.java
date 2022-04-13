@@ -2,8 +2,6 @@ package com.atypon.chessgame.model;
 
 import com.atypon.chessgame.utils.CachedLinkedHashSet;
 
-import java.util.Map;
-
 public interface ChessGameModel {
     void changeTurns();
 
@@ -19,7 +17,9 @@ public interface ChessGameModel {
 
     void setWinner(Player winner);
 
-    Map<ChessColor, Player> getPlayers();
+    Player getWhitePlayer();
+
+    Player getBlackPlayer();
 
     Player getCurrentPlayer();
 }
