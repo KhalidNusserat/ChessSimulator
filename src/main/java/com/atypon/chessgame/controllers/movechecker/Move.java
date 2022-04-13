@@ -1,4 +1,4 @@
-package com.atypon.chessgame;
+package com.atypon.chessgame.controllers.movechecker;
 
 import com.atypon.chessgame.model.BoardPosition;
 import com.atypon.chessgame.model.ChessColor;

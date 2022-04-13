@@ -1,6 +1,5 @@
 package com.atypon.chessgame.controllers.movechecker;
 
-import com.atypon.chessgame.Move;
 import com.atypon.chessgame.model.ChessGameModel;
 
 import java.util.Collection;
