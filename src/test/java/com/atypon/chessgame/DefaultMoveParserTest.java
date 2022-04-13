@@ -3,14 +3,14 @@ package com.atypon.chessgame;
 import com.atypon.chessgame.controllers.movechecker.Move;
 import com.atypon.chessgame.model.BoardPosition;
 import com.atypon.chessgame.model.ChessColor;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class DefaultMoveParserTest {
     @Test
-    void parsing() {
+    public void parsing() {
         DefaultMoveParser parser = new DefaultMoveParser();
         assertEquals(
                 parser.parseMove("move A1 B2", ChessColor.WHITE),
