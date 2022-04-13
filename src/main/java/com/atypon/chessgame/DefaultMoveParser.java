@@ -11,7 +11,7 @@ public class DefaultMoveParser implements MoveParser {
     private static final String pattern = "^move +([a-hA-H][1-8]) +([a-hA-H][1-8]) *$";
 
     @Override
-    public Move parseMove(String move, ChessColor playerColor) {
+    public Move parse(String move, ChessColor playerColor) {
         Pattern startWithMove = Pattern.compile(pattern);
         Matcher matcher = startWithMove.matcher(move);
         if (matcher.matches()) {
