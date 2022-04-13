@@ -1,15 +1,12 @@
 package com.atypon.chessgame;
 
-public interface ChessGame {
-    boolean isDone();
+import com.atypon.chessgame.controllers.movechecker.MoveChecker;
+import com.atypon.chessgame.model.ChessGameModel;
 
-    boolean isWhiteTurn();
+public class ChessGame {
+    private ChessGameModel model;
 
-    boolean isBlackTurn();
+    private MoveParser parser;
 
-    void playBlack();
-
-    void playWhite();
-
-    void printWinnerName();
+    private MoveChecker moveChecker;
 }

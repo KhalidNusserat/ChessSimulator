@@ -1,4 +1,4 @@
-package com.atypon.chessgame;
+package com.atypon.chessgame.model;
 
 import java.util.HashMap;
 import java.util.Map;

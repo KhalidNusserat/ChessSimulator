@@ -1,5 +1,8 @@
 package com.atypon.chessgame;
 
+import com.atypon.chessgame.model.BoardPosition;
+import com.atypon.chessgame.model.ChessColor;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

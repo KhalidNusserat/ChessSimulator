@@ -1,4 +1,4 @@
-package com.atypon.chessgame;
+package com.atypon.chessgame.model;
 
 public class StandardChessBoard extends BoardState {
     public StandardChessBoard() {

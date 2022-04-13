@@ -1,4 +1,4 @@
-package com.atypon.chessgame;
+package com.atypon.chessgame.model;
 
 public record BoardPosition(String position) {
     public static BoardPosition at(String position) {

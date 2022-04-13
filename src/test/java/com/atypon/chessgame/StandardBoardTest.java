@@ -1,5 +1,6 @@
 package com.atypon.chessgame;
 
+import com.atypon.chessgame.model.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
