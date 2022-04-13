@@ -1,20 +1,32 @@
 package com.atypon.chessgame.utils;
 
 import java.util.LinkedHashSet;
+import java.util.Objects;
+import java.util.Stack;
 
 public class CachedLinkedHashSet<E> extends LinkedHashSet<E> {
-    private E last;
+    private final Stack<E> elements = new Stack<>();
 
     @Override
     public boolean add(E e) {
         boolean added = super.add(e);
+
         if (added) {
-            last = e;
+            elements.push(e);
         }
         return added;
     }
 
+    @Override
+    public boolean remove(Object o) {
+        boolean removed = super.remove(o);
+        if (removed && Objects.equals(o, elements.peek())) {
+            elements.pop();
+        }
+        return removed;
+    }
+
     public E getLast() {
-        return last;
+        return elements.peek();
     }
 }
