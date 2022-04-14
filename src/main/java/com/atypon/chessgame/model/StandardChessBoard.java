@@ -1,6 +1,11 @@
 package com.atypon.chessgame.model;
 
-public class StandardChessBoard extends BoardState {
+import java.util.HashMap;
+import java.util.Map;
+
+public class StandardChessBoard implements BoardState {
+    private final Map<BoardPosition, ChessPiece> board = new HashMap<>();
+
     public StandardChessBoard() {
         initializePlayer(ChessColor.WHITE, "2", "1");
         initializePlayer(ChessColor.BLACK, "7", "8");
@@ -21,5 +26,10 @@ public class StandardChessBoard extends BoardState {
         board.put(BoardPosition.at("F" + otherPiecesLevel), new ChessPiece(ChessPieceType.BISHOP, color));
         board.put(BoardPosition.at("D" + otherPiecesLevel), new ChessPiece(ChessPieceType.QUEEN, color));
         board.put(BoardPosition.at("E" + otherPiecesLevel), new ChessPiece(ChessPieceType.KING, color));
+    }
+
+    @Override
+    public ChessPiece getPieceAt(BoardPosition position) {
+        return board.get(position);
     }
 }
