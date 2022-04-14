@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StandardChessBoard implements BoardState {
+public class DefaultBoardState implements BoardState {
     private final Map<BoardPosition, ChessPiece> board = new HashMap<>();
 
-    private StandardChessBoard(StandardChessBoard other) {
+    private DefaultBoardState(DefaultBoardState other) {
         board.putAll(other.board);
     }
 
-    public StandardChessBoard() {
+    public DefaultBoardState() {
         initializePlayer(ChessColor.WHITE, "2", "1");
         initializePlayer(ChessColor.BLACK, "7", "8");
     }
@@ -40,14 +40,14 @@ public class StandardChessBoard implements BoardState {
 
     @Override
     public BoardState without(BoardPosition position) {
-        StandardChessBoard newBoardState = new StandardChessBoard(this);
+        DefaultBoardState newBoardState = new DefaultBoardState(this);
         newBoardState.board.remove(position);
         return newBoardState;
     }
 
     @Override
     public BoardState withSwapped(BoardPosition firstPosition, BoardPosition secondPosition) {
-        StandardChessBoard newBoardState = new StandardChessBoard(this);
+        DefaultBoardState newBoardState = new DefaultBoardState(this);
         ChessPiece firstPiece = board.get(firstPosition);
         ChessPiece secondPiece = board.get(secondPosition);
         newBoardState.board.put(firstPosition, secondPiece);
@@ -57,7 +57,7 @@ public class StandardChessBoard implements BoardState {
 
     @Override
     public BoardState withPieceAt(ChessPiece chessPiece, BoardPosition position) {
-        StandardChessBoard newBoardState = new StandardChessBoard(this);
+        DefaultBoardState newBoardState = new DefaultBoardState(this);
         newBoardState.board.put(position, chessPiece);
         return newBoardState;
     }

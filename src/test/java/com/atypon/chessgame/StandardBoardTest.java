@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class StandardBoardTest {
     @Test
     public void testInitialBoard() {
-        StandardChessBoard chessBoard = new StandardChessBoard();
+        DefaultBoardState chessBoard = new DefaultBoardState();
         for (int i = 0; i < 8; i++) {
             assertEquals(
                     chessBoard.getPieceAt(BoardPosition.at((char) ('A' + i) + "2")),
@@ -25,35 +25,35 @@ public class StandardBoardTest {
 
     @Test
     public void testWithSwapped() {
-        StandardChessBoard chessBoard = new StandardChessBoard();
-        chessBoard = (StandardChessBoard) chessBoard.withSwapped(BoardPosition.at("A2"), BoardPosition.at("A4"));
+        DefaultBoardState chessBoard = new DefaultBoardState();
+        chessBoard = (DefaultBoardState) chessBoard.withSwapped(BoardPosition.at("A2"), BoardPosition.at("A4"));
         assertNull(chessBoard.getPieceAt(BoardPosition.at("A2")));
         assertEquals(chessBoard.getPieceAt(BoardPosition.at("A4")).type(), ChessPieceType.PAWN);
-        chessBoard = (StandardChessBoard) chessBoard.withSwapped(BoardPosition.at("A3"), BoardPosition.at("A2"));
+        chessBoard = (DefaultBoardState) chessBoard.withSwapped(BoardPosition.at("A3"), BoardPosition.at("A2"));
         assertNull(chessBoard.getPieceAt(BoardPosition.at("A3")));
         assertNull(chessBoard.getPieceAt(BoardPosition.at("A2")));
-        chessBoard = (StandardChessBoard) chessBoard.withSwapped(BoardPosition.at("A4"), BoardPosition.at("H1"));
+        chessBoard = (DefaultBoardState) chessBoard.withSwapped(BoardPosition.at("A4"), BoardPosition.at("H1"));
         assertEquals(chessBoard.getPieceAt(BoardPosition.at("A4")).type(), ChessPieceType.ROOK);
         assertEquals(chessBoard.getPieceAt(BoardPosition.at("H1")).type(), ChessPieceType.PAWN);
     }
 
     @Test
     public void testWithout() {
-        StandardChessBoard chessBoard = new StandardChessBoard();
-        chessBoard = (StandardChessBoard) chessBoard.without(BoardPosition.at("E8"));
+        DefaultBoardState chessBoard = new DefaultBoardState();
+        chessBoard = (DefaultBoardState) chessBoard.without(BoardPosition.at("E8"));
         assertNull(chessBoard.getPieceAt(BoardPosition.at("E8")));
     }
 
     @Test
     public void testGetPositionOfType() {
-        StandardChessBoard chessBoard = new StandardChessBoard();
+        DefaultBoardState chessBoard = new DefaultBoardState();
         List<BoardPosition> positionsOfPawns = chessBoard.getPositionsOf(ChessPieceType.PAWN);
         assertEquals(positionsOfPawns.size(), 16);
     }
 
     @Test
     public void testGetPositionsOfPiece() {
-        StandardChessBoard chessBoard = new StandardChessBoard();
+        DefaultBoardState chessBoard = new DefaultBoardState();
         List<BoardPosition> positionsOfBlackRooks = chessBoard.getPositionsOf(
                 new ChessPiece(ChessPieceType.ROOK, ChessColor.BLACK)
         );
@@ -64,29 +64,29 @@ public class StandardBoardTest {
 
     @Test
     public void testContainsType() {
-        StandardChessBoard chessBoard = new StandardChessBoard();
+        DefaultBoardState chessBoard = new DefaultBoardState();
         assertTrue(chessBoard.contains(ChessPieceType.PAWN));
         List<BoardPosition> positionsOfPawns = chessBoard.getPositionsOf(ChessPieceType.PAWN);
         for (BoardPosition position : positionsOfPawns) {
-            chessBoard = (StandardChessBoard) chessBoard.without(position);
+            chessBoard = (DefaultBoardState) chessBoard.without(position);
         }
         assertFalse(chessBoard.contains(ChessPieceType.PAWN));
     }
 
     @Test
     public void testContainsPiece() {
-        StandardChessBoard chessBoard = new StandardChessBoard();
+        DefaultBoardState chessBoard = new DefaultBoardState();
         ChessPiece whiteKing = new ChessPiece(ChessPieceType.KING, ChessColor.WHITE);
         assertTrue(chessBoard.contains(whiteKing));
-        chessBoard = (StandardChessBoard) chessBoard.without(chessBoard.getPositionsOf(whiteKing).get(0));
+        chessBoard = (DefaultBoardState) chessBoard.without(chessBoard.getPositionsOf(whiteKing).get(0));
         assertFalse(chessBoard.contains(whiteKing));
     }
 
     @Test
     public void testWithPieceAt() {
-        StandardChessBoard chessBoard = new StandardChessBoard();
+        DefaultBoardState chessBoard = new DefaultBoardState();
         ChessPiece newWhiteKing = new ChessPiece(ChessPieceType.KING, ChessColor.BLACK);
-        chessBoard = (StandardChessBoard) chessBoard.withPieceAt(newWhiteKing, BoardPosition.at("D5"));
+        chessBoard = (DefaultBoardState) chessBoard.withPieceAt(newWhiteKing, BoardPosition.at("D5"));
         assertEquals(chessBoard.getPieceAt(BoardPosition.at("D5")), newWhiteKing);
     }
 }
