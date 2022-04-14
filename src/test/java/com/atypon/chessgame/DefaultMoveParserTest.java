@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThrows;
 
 public class DefaultMoveParserTest {
     @Test
-    public void parsing() {
+    public void shouldParse() {
         DefaultMoveParser parser = new DefaultMoveParser();
         assertEquals(
                 parser.parse("move A1 B2", ChessColor.WHITE),

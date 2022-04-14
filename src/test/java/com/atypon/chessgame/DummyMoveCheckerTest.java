@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 
 public class DummyMoveCheckerTest {
     @Test
-    public void checkMoves() {
+    public void shouldCheckMoves() {
         ChessGameModel chessGameModel = new DefaultChessGameModel("Khalid", "Bin Hatem");
         DummyMoveChecker dummyMoveChecker = new DummyMoveChecker();
         MoveParser parser = new DefaultMoveParser();
