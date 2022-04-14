@@ -1,10 +1,15 @@
 package com.atypon.chessgame.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class StandardChessBoard implements BoardState {
     private final Map<BoardPosition, ChessPiece> board = new HashMap<>();
+
+    private StandardChessBoard(StandardChessBoard other) {
+        board.putAll(other.board);
+    }
 
     public StandardChessBoard() {
         initializePlayer(ChessColor.WHITE, "2", "1");
@@ -31,5 +36,53 @@ public class StandardChessBoard implements BoardState {
     @Override
     public ChessPiece getPieceAt(BoardPosition position) {
         return board.get(position);
+    }
+
+    @Override
+    public BoardState without(BoardPosition position) {
+        StandardChessBoard newBoardState = new StandardChessBoard(this);
+        newBoardState.board.remove(position);
+        return newBoardState;
+    }
+
+    @Override
+    public BoardState withSwapped(BoardPosition firstPosition, BoardPosition secondPosition) {
+        StandardChessBoard newBoardState = new StandardChessBoard(this);
+        ChessPiece firstPiece = board.get(firstPosition);
+        ChessPiece secondPiece = board.get(secondPosition);
+        newBoardState.board.put(firstPosition, secondPiece);
+        newBoardState.board.put(secondPosition, firstPiece);
+        return newBoardState;
+    }
+
+    @Override
+    public BoardState withPieceAt(ChessPiece chessPiece, BoardPosition position) {
+        StandardChessBoard newBoardState = new StandardChessBoard(this);
+        newBoardState.board.put(position, chessPiece);
+        return newBoardState;
+    }
+
+    @Override
+    public List<BoardPosition> getPositionsOf(ChessPieceType type) {
+        return board.keySet().stream()
+                .filter(position -> board.get(position).type().equals(type))
+                .toList();
+    }
+
+    @Override
+    public List<BoardPosition> getPositionsOf(ChessPiece piece) {
+        return board.keySet().stream()
+                .filter(position -> board.get(position).equals(piece))
+                .toList();
+    }
+
+    @Override
+    public boolean contains(ChessPieceType type) {
+        return !getPositionsOf(type).isEmpty();
+    }
+
+    @Override
+    public boolean contains(ChessPiece piece) {
+        return !getPositionsOf(piece).isEmpty();
     }
 }
