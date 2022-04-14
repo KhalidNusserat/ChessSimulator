@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DefaultMoveParser implements MoveParser {
-    private static final String pattern = "^move +([a-hA-H][1-8]) +([a-hA-H][1-8]) *$";
+    private static final String pattern = "^ *move +([a-hA-H][1-8]) +([a-hA-H][1-8]) *$";
 
     @Override
     public Move parse(String move, ChessColor playerColor) {
