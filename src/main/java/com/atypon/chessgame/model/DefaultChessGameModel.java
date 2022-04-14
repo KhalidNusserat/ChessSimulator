@@ -1,13 +1,14 @@
 package com.atypon.chessgame.model;
 
-import com.atypon.chessgame.utils.CachedLinkedHashSet;
+import java.util.Collection;
+import java.util.Stack;
 
 public class DefaultChessGameModel implements ChessGameModel {
     private final Player whitePlayer;
 
     private final Player blackPlayer;
 
-    private final CachedLinkedHashSet<BoardState> boardStates;
+    private final Stack<BoardState> boardStates;
 
     private Player currentPlayer;
 
@@ -18,7 +19,7 @@ public class DefaultChessGameModel implements ChessGameModel {
     public DefaultChessGameModel(String whitePlayerName, String blackPlayerName) {
         whitePlayer = new Player(whitePlayerName);
         blackPlayer = new Player(blackPlayerName);
-        boardStates = new CachedLinkedHashSet<>();
+        boardStates = new Stack<>();
         boardStates.add(new StandardChessBoard());
     }
 
@@ -33,11 +34,11 @@ public class DefaultChessGameModel implements ChessGameModel {
 
     @Override
     public BoardState getCurrentState() {
-        return boardStates.getLast();
+        return boardStates.peek();
     }
 
     @Override
-    public CachedLinkedHashSet<BoardState> getBoardStates() {
+    public Collection<BoardState> getBoardStates() {
         return boardStates;
     }
 

@@ -1,13 +1,13 @@
 package com.atypon.chessgame.model;
 
-import com.atypon.chessgame.utils.CachedLinkedHashSet;
+import java.util.Collection;
 
 public interface ChessGameModel {
     void changeTurns();
 
     BoardState getCurrentState();
 
-    CachedLinkedHashSet<BoardState> getBoardStates();
+    Collection<BoardState> getBoardStates();
 
     boolean isDone();
 
