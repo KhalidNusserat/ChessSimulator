@@ -6,6 +6,7 @@ import com.atypon.chessgame.model.ChessPieceType;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class DummyEventsChecker extends DefaultEventsChecker {
@@ -35,7 +36,7 @@ public class DummyEventsChecker extends DefaultEventsChecker {
                         if (++counter >= numberOfStepsBeforeCheckmate) {
                             return List.of(new CheckMateEvent());
                         }
-                        return List.of();
+                        return Collections.emptyList();
                     }
                 }
         );
