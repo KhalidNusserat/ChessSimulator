@@ -20,8 +20,11 @@ public class DefaultChessGame implements ChessGame {
     private final MoveParser moveParser;
 
     private final MoveChecker moveChecker;
+
     private final EventsChecker eventsChecker;
+
     private MoveExecutor moveExecutor;
+
     private EventsHandler eventsHandler;
 
     public DefaultChessGame(String whitePlayerName, String blackPlayerName) {
