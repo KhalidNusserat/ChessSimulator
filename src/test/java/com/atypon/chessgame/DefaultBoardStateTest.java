@@ -1,6 +1,9 @@
 package com.atypon.chessgame;
 
-import com.atypon.chessgame.model.*;
+import com.atypon.chessgame.model.BoardPosition;
+import com.atypon.chessgame.model.ChessColor;
+import com.atypon.chessgame.model.ChessPiece;
+import com.atypon.chessgame.model.ChessPieceType;
 import org.junit.Test;
 
 import java.util.List;

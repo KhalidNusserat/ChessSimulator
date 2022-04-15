@@ -25,6 +25,7 @@ public class DummyEventsChecker extends DefaultEventsChecker {
                 },
                 new EventChecker() {
                     private int counter = 0;
+
                     @Override
                     public ChessEvent check(ChessGameModel chessGameModel) {
                         if (++counter >= numberOfStepsBeforeCheckmate) {

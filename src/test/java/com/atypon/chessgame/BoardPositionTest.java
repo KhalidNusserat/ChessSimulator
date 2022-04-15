@@ -2,7 +2,8 @@ package com.atypon.chessgame;
 
 import com.atypon.chessgame.model.BoardPosition;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertThrows;
 
 public class BoardPositionTest {
     @Test

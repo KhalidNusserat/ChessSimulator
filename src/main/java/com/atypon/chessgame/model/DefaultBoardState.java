@@ -3,7 +3,6 @@ package com.atypon.chessgame.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class DefaultBoardState implements BoardState {
     private final Map<BoardPosition, ChessPiece> board = new HashMap<>();

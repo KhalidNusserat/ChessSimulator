@@ -4,12 +4,14 @@ import com.atypon.chessgame.controllers.eventschecker.ChessEvent;
 import com.atypon.chessgame.controllers.eventschecker.DummyEventsChecker;
 import com.atypon.chessgame.controllers.eventschecker.EventsChecker;
 import com.atypon.chessgame.controllers.eventschecker.PawnPromotionEvent;
-import com.atypon.chessgame.model.*;
-
-import static org.junit.Assert.*;
-
+import com.atypon.chessgame.model.BoardPosition;
+import com.atypon.chessgame.model.ChessGameModel;
+import com.atypon.chessgame.model.DefaultChessGameModel;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class DummyEventCheckerTest {
     private EventsChecker eventsChecker;
