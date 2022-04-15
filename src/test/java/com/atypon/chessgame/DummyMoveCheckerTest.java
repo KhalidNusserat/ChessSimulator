@@ -1,6 +1,6 @@
 package com.atypon.chessgame;
 
-import com.atypon.chessgame.controllers.movechecker.DummyMoveChecker;
+import com.atypon.chessgame.controller.movechecker.DummyMoveChecker;
 import com.atypon.chessgame.model.ChessColor;
 import com.atypon.chessgame.model.ChessGameModel;
 import com.atypon.chessgame.model.DefaultChessGameModel;

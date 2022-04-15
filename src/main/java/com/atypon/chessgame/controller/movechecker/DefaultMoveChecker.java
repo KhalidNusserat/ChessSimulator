@@ -1,4 +1,4 @@
-package com.atypon.chessgame.controllers.movechecker;
+package com.atypon.chessgame.controller.movechecker;
 
 import com.atypon.chessgame.model.ChessGameModel;
 

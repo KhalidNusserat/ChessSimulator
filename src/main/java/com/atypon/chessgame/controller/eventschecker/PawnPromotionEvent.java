@@ -1,4 +1,4 @@
-package com.atypon.chessgame.controllers.eventschecker;
+package com.atypon.chessgame.controller.eventschecker;
 
 import com.atypon.chessgame.model.BoardPosition;
 

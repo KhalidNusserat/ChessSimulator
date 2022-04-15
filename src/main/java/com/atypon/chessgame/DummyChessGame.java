@@ -1,14 +1,14 @@
 package com.atypon.chessgame;
 
-import com.atypon.chessgame.controllers.eventschecker.ChessEvent;
-import com.atypon.chessgame.controllers.eventschecker.DummyEventsChecker;
-import com.atypon.chessgame.controllers.eventschecker.EventsChecker;
-import com.atypon.chessgame.controllers.eventshandler.DummyEventsHandler;
-import com.atypon.chessgame.controllers.eventshandler.EventsHandler;
-import com.atypon.chessgame.controllers.movechecker.DummyMoveChecker;
-import com.atypon.chessgame.controllers.movechecker.Move;
-import com.atypon.chessgame.controllers.movechecker.MoveChecker;
-import com.atypon.chessgame.controllers.moveexecutor.MoveExecutor;
+import com.atypon.chessgame.controller.eventschecker.ChessEvent;
+import com.atypon.chessgame.controller.eventschecker.DummyEventsChecker;
+import com.atypon.chessgame.controller.eventschecker.EventsChecker;
+import com.atypon.chessgame.controller.eventshandler.DummyEventsHandler;
+import com.atypon.chessgame.controller.eventshandler.EventsHandler;
+import com.atypon.chessgame.controller.movechecker.DummyMoveChecker;
+import com.atypon.chessgame.controller.movechecker.Move;
+import com.atypon.chessgame.controller.movechecker.MoveChecker;
+import com.atypon.chessgame.controller.moveexecutor.MoveExecutor;
 import com.atypon.chessgame.model.ChessColor;
 import com.atypon.chessgame.model.ChessGameModel;
 import com.atypon.chessgame.model.DefaultChessGameModel;

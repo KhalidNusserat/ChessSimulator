@@ -1,8 +1,8 @@
 package com.atypon.chessgame;
 
-import com.atypon.chessgame.controllers.eventschecker.DummyEventsChecker;
-import com.atypon.chessgame.controllers.eventschecker.EventsChecker;
-import com.atypon.chessgame.controllers.eventschecker.PawnPromotionEvent;
+import com.atypon.chessgame.controller.eventschecker.DummyEventsChecker;
+import com.atypon.chessgame.controller.eventschecker.EventsChecker;
+import com.atypon.chessgame.controller.eventschecker.PawnPromotionEvent;
 import com.atypon.chessgame.model.BoardPosition;
 import com.atypon.chessgame.model.ChessGameModel;
 import com.atypon.chessgame.model.DefaultChessGameModel;
