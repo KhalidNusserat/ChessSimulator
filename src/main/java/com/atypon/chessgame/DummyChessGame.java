@@ -3,6 +3,7 @@ package com.atypon.chessgame;
 import com.atypon.chessgame.controllers.eventschecker.ChessEvent;
 import com.atypon.chessgame.controllers.eventschecker.DummyEventsChecker;
 import com.atypon.chessgame.controllers.eventschecker.EventsChecker;
+import com.atypon.chessgame.controllers.eventshandler.DummyEventsHandler;
 import com.atypon.chessgame.controllers.eventshandler.EventsHandler;
 import com.atypon.chessgame.controllers.movechecker.DummyMoveChecker;
 import com.atypon.chessgame.controllers.movechecker.Move;
@@ -14,7 +15,7 @@ import com.atypon.chessgame.model.DefaultChessGameModel;
 
 import java.util.List;
 
-public class DefaultChessGame implements ChessGame {
+public class DummyChessGame implements ChessGame {
     private final ChessGameModel chessGameModel;
 
     private final MoveParser moveParser;
@@ -25,13 +26,14 @@ public class DefaultChessGame implements ChessGame {
 
     private MoveExecutor moveExecutor;
 
-    private EventsHandler eventsHandler;
+    private final EventsHandler eventsHandler;
 
-    public DefaultChessGame(String whitePlayerName, String blackPlayerName) {
+    public DummyChessGame(String whitePlayerName, String blackPlayerName) {
         chessGameModel = new DefaultChessGameModel(whitePlayerName, blackPlayerName);
         moveParser = new DefaultMoveParser();
         moveChecker = new DummyMoveChecker();
         eventsChecker = new DummyEventsChecker(10);
+        eventsHandler = new DummyEventsHandler();
     }
 
     private void playMove(String moveCommand, ChessColor playerColor) throws IllegalArgumentException {
