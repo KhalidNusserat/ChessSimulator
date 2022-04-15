@@ -3,8 +3,9 @@ package com.atypon.chessgame;
 import java.util.Scanner;
 
 public class Main {
+    private final static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         ChessGame chessGame = new DummyChessGame("Phoenix", "Maya");
         while (!chessGame.isDone()) {
             if (chessGame.isWhiteTurn()) {
