@@ -1,9 +1,9 @@
 package com.atypon.chessgame;
 
 public interface ChessGame {
-    void playWhite(String moveCommand);
+    void playWhite(String move);
 
-    void playBlack(String moveCommand);
+    void playBlack(String move);
 
     boolean isDone();
 
