@@ -33,7 +33,7 @@ public class DefaultChessGameModel implements ChessGameModel {
     }
 
     @Override
-    public BoardState getCurrentState() {
+    public BoardState getCurrentBoardState() {
         return boardStates.peek();
     }
 

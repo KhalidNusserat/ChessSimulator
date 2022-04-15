@@ -5,7 +5,7 @@ import java.util.Collection;
 public interface ChessGameModel {
     void changeTurns();
 
-    BoardState getCurrentState();
+    BoardState getCurrentBoardState();
 
     Collection<BoardState> getBoardStates();
 
