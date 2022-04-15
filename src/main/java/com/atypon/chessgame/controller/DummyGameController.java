@@ -55,22 +55,7 @@ public class DummyGameController implements ChessGameController {
     }
 
     @Override
-    public void handleEvent() {
+    public void handleEvents() {
         eventsHandler.handleEvents(eventsChecker.getEvents(chessGameModel), chessGameModel);
-    }
-
-    @Override
-    public boolean isDone() {
-        return chessGameModel.isDone();
-    }
-
-    @Override
-    public ChessPlayer getWinner() {
-        return chessGameModel.getWinner();
-    }
-
-    @Override
-    public ChessPlayer getCurrentPlayer() {
-        return chessGameModel.getCurrentPlayer();
     }
 }
