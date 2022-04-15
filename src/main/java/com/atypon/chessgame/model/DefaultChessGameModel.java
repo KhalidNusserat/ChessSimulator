@@ -76,4 +76,9 @@ public class DefaultChessGameModel implements ChessGameModel {
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
+
+    @Override
+    public void updateCurrentBoardState(BoardState boardState) {
+        boardStates.push(boardState);
+    }
 }
