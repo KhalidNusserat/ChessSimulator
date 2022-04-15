@@ -7,7 +7,6 @@ import com.atypon.chessgame.controller.movechecker.InvalidMove;
 import com.atypon.chessgame.controller.movechecker.MoveChecker;
 import com.atypon.chessgame.controller.moveexecutor.MoveExecutor;
 import com.atypon.chessgame.model.ChessGameModel;
-import com.atypon.chessgame.model.ChessPlayer;
 
 public class DummyGameController implements ChessGameController {
     private ChessGameModel chessGameModel;
