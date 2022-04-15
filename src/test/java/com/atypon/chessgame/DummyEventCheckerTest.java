@@ -10,8 +10,7 @@ import com.atypon.chessgame.model.DefaultChessGameModel;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class DummyEventCheckerTest {
     private EventsChecker eventsChecker;
@@ -38,16 +37,7 @@ public class DummyEventCheckerTest {
                 eventsChecker
                         .getEvents(chessGameModel)
                         .stream()
-                        .map(ChessEvent::getClass)
-                        .anyMatch(eventClass -> eventClass.equals(PawnPromotionEvent.class))
-        );
-        chessGameModel.updateCurrentBoardState(
-                chessGameModel
-                        .getCurrentBoardState()
-                        .withSwapped(
-                                BoardPosition.at("A8"),
-                                BoardPosition.at("B3")
-                        )
+                        .anyMatch(eventClass -> eventClass instanceof PawnPromotionEvent)
         );
         chessGameModel.updateCurrentBoardState(
                 chessGameModel
@@ -61,8 +51,30 @@ public class DummyEventCheckerTest {
                 eventsChecker
                         .getEvents(chessGameModel)
                         .stream()
-                        .map(ChessEvent::getClass)
-                        .anyMatch(eventClass -> eventClass.equals(PawnPromotionEvent.class))
+                        .anyMatch(eventClass -> eventClass instanceof PawnPromotionEvent)
+        );
+        assertEquals(3, eventsChecker.getEvents(chessGameModel).size());
+        assertTrue(
+                eventsChecker
+                        .getEvents(chessGameModel)
+                        .stream()
+                        .filter(chessEvent -> chessEvent instanceof  PawnPromotionEvent)
+                        .anyMatch(
+                                chessEvent -> ((PawnPromotionEvent) chessEvent)
+                                        .getPawnPosition()
+                                        .equals(BoardPosition.at("A8"))
+                        )
+        );
+        assertTrue(
+                eventsChecker
+                        .getEvents(chessGameModel)
+                        .stream()
+                        .filter(chessEvent -> chessEvent instanceof  PawnPromotionEvent)
+                        .anyMatch(
+                                chessEvent -> ((PawnPromotionEvent) chessEvent)
+                                        .getPawnPosition()
+                                        .equals(BoardPosition.at("A1"))
+                        )
         );
     }
 
