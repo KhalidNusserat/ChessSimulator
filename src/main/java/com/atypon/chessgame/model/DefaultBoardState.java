@@ -66,7 +66,11 @@ public class DefaultBoardState implements BoardState {
     @Override
     public BoardState withPieceAt(ChessPiece chessPiece, BoardPosition position) {
         DefaultBoardState newBoardState = new DefaultBoardState(this);
-        newBoardState.board.put(position, chessPiece);
+        if (chessPiece != null) {
+            newBoardState.board.put(position, chessPiece);
+        } else {
+            newBoardState.board.remove(position);
+        }
         return newBoardState;
     }
 
