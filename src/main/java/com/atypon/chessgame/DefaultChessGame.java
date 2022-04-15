@@ -1,6 +1,7 @@
 package com.atypon.chessgame;
 
 import com.atypon.chessgame.controllers.eventschecker.ChessEvent;
+import com.atypon.chessgame.controllers.eventschecker.DummyEventsChecker;
 import com.atypon.chessgame.controllers.eventschecker.EventsChecker;
 import com.atypon.chessgame.controllers.eventshandler.EventsHandler;
 import com.atypon.chessgame.controllers.movechecker.DummyMoveChecker;
@@ -22,7 +23,7 @@ public class DefaultChessGame implements ChessGame {
 
     private MoveExecutor moveExecutor;
 
-    private EventsChecker eventsChecker;
+    private final EventsChecker eventsChecker;
 
     private EventsHandler eventsHandler;
 
@@ -30,6 +31,7 @@ public class DefaultChessGame implements ChessGame {
         chessGameModel = new DefaultChessGameModel(whitePlayerName, blackPlayerName);
         moveParser = new DefaultMoveParser();
         moveChecker = new DummyMoveChecker();
+        eventsChecker = new DummyEventsChecker(10);
     }
 
     private void playMove(String moveCommand, ChessColor playerColor) throws IllegalArgumentException {

@@ -1,5 +1,6 @@
 package com.atypon.chessgame;
 
+import com.atypon.chessgame.controllers.eventschecker.ChessEvent;
 import com.atypon.chessgame.controllers.eventschecker.DummyEventsChecker;
 import com.atypon.chessgame.controllers.eventschecker.EventsChecker;
 import com.atypon.chessgame.controllers.eventschecker.PawnPromotionEvent;
@@ -31,14 +32,36 @@ public class DummyEventCheckerTest {
                                 BoardPosition.at("A8")
                         )
         );
-        assertEquals(
+        assertTrue(
+                eventsChecker
+                        .getEvents(chessGameModel)
+                        .stream()
+                        .map(ChessEvent::getClass)
+                        .anyMatch(eventClass -> eventClass.equals(PawnPromotionEvent.class))
+        );
+        chessGameModel.updateCurrentBoardState(
                 chessGameModel
                         .getCurrentBoardState()
-                        .getPieceAt(BoardPosition.at("A8")),
-                ChessPiece.getWhite(ChessPieceType.PAWN)
+                        .withSwapped(
+                                BoardPosition.at("A8"),
+                                BoardPosition.at("B3")
+                        )
         );
-        assertEquals(1, eventsChecker.getEvents(chessGameModel).size());
-        assertEquals(PawnPromotionEvent.class, eventsChecker.getEvents(chessGameModel).get(0).getClass());
+        chessGameModel.updateCurrentBoardState(
+                chessGameModel
+                        .getCurrentBoardState()
+                        .withSwapped(
+                                BoardPosition.at("A7"),
+                                BoardPosition.at("A1")
+                        )
+        );
+        assertTrue(
+                eventsChecker
+                        .getEvents(chessGameModel)
+                        .stream()
+                        .map(ChessEvent::getClass)
+                        .anyMatch(eventClass -> eventClass.equals(PawnPromotionEvent.class))
+        );
     }
 
     @Test
