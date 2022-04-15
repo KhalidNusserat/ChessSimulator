@@ -1,64 +1,52 @@
 package com.atypon.chessgame;
 
-import com.atypon.chessgame.controller.eventschecker.ChessEvent;
+import com.atypon.chessgame.controller.ChessGameController;
+import com.atypon.chessgame.controller.DummyGameController;
 import com.atypon.chessgame.controller.eventschecker.DummyEventsChecker;
-import com.atypon.chessgame.controller.eventschecker.EventsChecker;
 import com.atypon.chessgame.controller.eventshandler.DummyEventsHandler;
-import com.atypon.chessgame.controller.eventshandler.EventsHandler;
 import com.atypon.chessgame.controller.movechecker.DummyMoveChecker;
-import com.atypon.chessgame.controller.movechecker.ChessMove;
-import com.atypon.chessgame.controller.movechecker.MoveChecker;
-import com.atypon.chessgame.controller.moveexecutor.MoveExecutor;
+import com.atypon.chessgame.controller.movechecker.InvalidMove;
+import com.atypon.chessgame.controller.moveexecutor.DefaultMoveExecutor;
 import com.atypon.chessgame.model.ChessColor;
 import com.atypon.chessgame.model.ChessGameModel;
 import com.atypon.chessgame.model.DefaultChessGameModel;
 
-import java.util.List;
-
 public class DummyChessGame implements ChessGame {
     private final ChessGameModel chessGameModel;
 
+    private final ChessGameController chessGameController;
+
     private final MoveParser moveParser;
 
-    private final MoveChecker moveChecker;
-
-    private final EventsChecker eventsChecker;
-
-    private MoveExecutor moveExecutor;
-
-    private final EventsHandler eventsHandler;
-
-    public DummyChessGame(String whitePlayerName, String blackPlayerName) {
-        chessGameModel = new DefaultChessGameModel(whitePlayerName, blackPlayerName);
+    public DummyChessGame(String whitePlayer, String blackPlayer) {
+        chessGameModel = new DefaultChessGameModel(whitePlayer, blackPlayer);
+        chessGameController = new DummyGameController();
+        chessGameController.setChessGameModel(chessGameModel);
+        chessGameController.setEventsChecker(new DummyEventsChecker(20));
+        chessGameController.setEventsHandler(new DummyEventsHandler());
+        chessGameController.setMoveChecker(new DummyMoveChecker());
+        chessGameController.setMoveExecutor(new DefaultMoveExecutor());
         moveParser = new DefaultMoveParser();
-        moveChecker = new DummyMoveChecker();
-        eventsChecker = new DummyEventsChecker(10);
-        eventsHandler = new DummyEventsHandler();
     }
 
-    private void playMove(String moveCommand, ChessColor playerColor) throws IllegalArgumentException {
+    @Override
+    public void playWhite(String move) {
         try {
-            ChessMove chessMove = moveParser.parse(moveCommand, playerColor);
-            if (moveChecker.check(chessMove, chessGameModel)) {
-                moveExecutor.execute(chessMove, chessGameModel);
-            } else {
-                throw new IllegalArgumentException("Illegal move.");
-            }
-            List<ChessEvent> events = eventsChecker.getEvents(chessGameModel);
-            eventsHandler.handleEvents(events, chessGameModel);
-        } catch (IllegalArgumentException e) {
-            System.out.print(e.getMessage());
+            chessGameController.executeMoveIfLegal(moveParser.parse(move, ChessColor.WHITE));
+            chessGameController.handleEvents();
+        } catch (InvalidMove e) {
+            System.out.println(e.getMessage());
         }
     }
 
     @Override
-    public void playWhite(String moveCommand) {
-        playMove(moveCommand, ChessColor.WHITE);
-    }
-
-    @Override
-    public void playBlack(String moveCommand) {
-        playMove(moveCommand, ChessColor.BLACK);
+    public void playBlack(String move) {
+        try {
+            chessGameController.executeMoveIfLegal(moveParser.parse(move, ChessColor.BLACK));
+            chessGameController.handleEvents();
+        } catch (InvalidMove e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
@@ -68,16 +56,16 @@ public class DummyChessGame implements ChessGame {
 
     @Override
     public boolean isWhiteTurn() {
-        return chessGameModel.getWhitePlayer().equals(chessGameModel.getCurrentPlayer());
+        return chessGameModel.getCurrentPlayer().equals(chessGameModel.getWhitePlayer());
     }
 
     @Override
     public boolean isBlackTurn() {
-        return chessGameModel.getBlackPlayer().equals(chessGameModel.getCurrentPlayer());
+        return chessGameModel.getCurrentPlayer().equals(chessGameModel.getBlackPlayer());
     }
 
     @Override
     public void printWinnerName() {
-        System.out.println(chessGameModel.getWinner().name());
+        System.out.printf("The winner is %s", chessGameModel.getWinner());
     }
 }
