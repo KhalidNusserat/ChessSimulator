@@ -9,7 +9,7 @@ import com.atypon.chessgame.controller.moveexecutor.MoveExecutor;
 import com.atypon.chessgame.model.ChessGameModel;
 import com.atypon.chessgame.model.ChessPlayer;
 
-public class DummyController implements ChessController {
+public class DummyGameController implements ChessGameController {
     private ChessGameModel chessGameModel;
 
     private EventsChecker eventsChecker;

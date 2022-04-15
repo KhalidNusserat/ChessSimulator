@@ -9,7 +9,7 @@ import com.atypon.chessgame.controller.moveexecutor.MoveExecutor;
 import com.atypon.chessgame.model.ChessGameModel;
 import com.atypon.chessgame.model.ChessPlayer;
 
-public interface ChessController {
+public interface ChessGameController {
     void setChessGameModel(ChessGameModel chessGameModel);
 
     void setEventsChecker(EventsChecker eventsChecker);
