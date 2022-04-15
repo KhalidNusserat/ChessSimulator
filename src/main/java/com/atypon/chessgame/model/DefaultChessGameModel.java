@@ -78,7 +78,7 @@ public class DefaultChessGameModel implements ChessGameModel {
     }
 
     @Override
-    public void updateCurrentBoardState(BoardState boardState) {
+    public void setCurrentBoardState(BoardState boardState) {
         boardStates.push(boardState);
     }
 }

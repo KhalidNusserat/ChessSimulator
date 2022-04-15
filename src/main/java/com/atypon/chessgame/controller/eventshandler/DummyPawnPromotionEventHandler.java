@@ -10,7 +10,7 @@ public class DummyPawnPromotionEventHandler implements EventHandler {
         BoardPosition pawnPosition = ((PawnPromotionEvent) chessEvent).getPawnPosition();
         BoardState currentBoardState = chessGameModel.getCurrentBoardState();
         ChessColor color = currentBoardState.getPieceAt(pawnPosition).color();
-        chessGameModel.updateCurrentBoardState(
+        chessGameModel.setCurrentBoardState(
                 currentBoardState
                         .withPieceAt(new ChessPiece(ChessPieceType.QUEEN, color), pawnPosition)
         );

@@ -23,5 +23,5 @@ public interface ChessGameModel {
 
     ChessPlayer getCurrentPlayer();
 
-    void updateCurrentBoardState(BoardState boardState);
+    void setCurrentBoardState(BoardState boardState);
 }

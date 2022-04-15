@@ -24,7 +24,7 @@ public class DummyEventCheckerTest {
 
     @Test
     public void testPawnPromotionEvent() {
-        chessGameModel.updateCurrentBoardState(
+        chessGameModel.setCurrentBoardState(
                 chessGameModel
                         .getCurrentBoardState()
                         .withSwapped(
@@ -38,7 +38,7 @@ public class DummyEventCheckerTest {
                         .stream()
                         .anyMatch(eventClass -> eventClass instanceof PawnPromotionEvent)
         );
-        chessGameModel.updateCurrentBoardState(
+        chessGameModel.setCurrentBoardState(
                 chessGameModel
                         .getCurrentBoardState()
                         .withSwapped(
