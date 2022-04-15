@@ -4,34 +4,39 @@ import com.atypon.chessgame.model.ChessGameModel;
 import com.atypon.chessgame.model.ChessPiece;
 import com.atypon.chessgame.model.ChessPieceType;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
 public class DummyEventsChecker extends DefaultEventsChecker {
     public DummyEventsChecker(int numberOfStepsBeforeCheckmate) {
         addAllEventCheckers(
                 chessGameModel -> {
-                    boolean pawnReachedEnd = chessGameModel
+                    List<ChessEvent> chessEvents = new ArrayList<>();
+                    chessGameModel
                             .getCurrentBoardState()
                             .getPositionsOf(ChessPiece.getWhite(ChessPieceType.PAWN))
                             .stream()
-                            .anyMatch(position -> position.getRow() == '8');
-                    pawnReachedEnd = pawnReachedEnd || chessGameModel
+                            .filter(position -> position.getRow() == '8')
+                            .forEach(position -> chessEvents.add(new PawnPromotionEvent(position)));
+                    chessGameModel
                             .getCurrentBoardState()
                             .getPositionsOf(ChessPiece.getBlack(ChessPieceType.PAWN))
                             .stream()
-                            .anyMatch(position -> position.getRow() == '1');
-                    if (pawnReachedEnd) {
-                        return new PawnPromotionEvent();
-                    }
-                    return null;
+                            .filter(position -> position.getRow() == '1')
+                            .forEach(position -> chessEvents.add(new PawnPromotionEvent(position)));
+                    return chessEvents;
                 },
                 new EventChecker() {
                     private int counter = 0;
 
                     @Override
-                    public ChessEvent check(ChessGameModel chessGameModel) {
+                    public Collection<ChessEvent> check(ChessGameModel chessGameModel) {
                         if (++counter >= numberOfStepsBeforeCheckmate) {
-                            return new CheckMateEvent();
+                            return List.of(new CheckMateEvent());
                         }
-                        return null;
+                        return List.of();
                     }
                 }
         );

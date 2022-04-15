@@ -24,9 +24,8 @@ public class DefaultEventsChecker implements EventsChecker {
 
     @Override
     public List<ChessEvent> getEvents(ChessGameModel chessGameModel) {
-        return eventCheckers.stream()
-                .map(eventChecker -> eventChecker.check(chessGameModel))
-                .filter(Objects::nonNull)
-                .toList();
+        List<ChessEvent> chessEvents = new ArrayList<>();
+        eventCheckers.forEach(eventChecker -> chessEvents.addAll(eventChecker.check(chessGameModel)));
+        return chessEvents;
     }
 }

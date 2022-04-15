@@ -2,6 +2,8 @@ package com.atypon.chessgame.controllers.eventschecker;
 
 import com.atypon.chessgame.model.ChessGameModel;
 
+import java.util.Collection;
+
 public interface EventChecker {
-    ChessEvent check(ChessGameModel chessGameModel);
+    Collection<ChessEvent> check(ChessGameModel chessGameModel);
 }
