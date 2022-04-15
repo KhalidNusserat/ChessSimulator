@@ -5,7 +5,6 @@ import com.atypon.chessgame.model.ChessPiece;
 import com.atypon.chessgame.model.ChessPieceType;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 

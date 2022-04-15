@@ -3,7 +3,6 @@ package com.atypon.chessgame.controllers.eventshandler;
 import com.atypon.chessgame.controllers.eventschecker.ChessEvent;
 import com.atypon.chessgame.model.ChessGameModel;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

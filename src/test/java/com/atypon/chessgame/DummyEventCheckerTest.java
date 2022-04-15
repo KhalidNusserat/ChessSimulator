@@ -1,6 +1,5 @@
 package com.atypon.chessgame;
 
-import com.atypon.chessgame.controllers.eventschecker.ChessEvent;
 import com.atypon.chessgame.controllers.eventschecker.DummyEventsChecker;
 import com.atypon.chessgame.controllers.eventschecker.EventsChecker;
 import com.atypon.chessgame.controllers.eventschecker.PawnPromotionEvent;
@@ -58,7 +57,7 @@ public class DummyEventCheckerTest {
                 eventsChecker
                         .getEvents(chessGameModel)
                         .stream()
-                        .filter(chessEvent -> chessEvent instanceof  PawnPromotionEvent)
+                        .filter(chessEvent -> chessEvent instanceof PawnPromotionEvent)
                         .anyMatch(
                                 chessEvent -> ((PawnPromotionEvent) chessEvent)
                                         .getPawnPosition()
@@ -69,7 +68,7 @@ public class DummyEventCheckerTest {
                 eventsChecker
                         .getEvents(chessGameModel)
                         .stream()
-                        .filter(chessEvent -> chessEvent instanceof  PawnPromotionEvent)
+                        .filter(chessEvent -> chessEvent instanceof PawnPromotionEvent)
                         .anyMatch(
                                 chessEvent -> ((PawnPromotionEvent) chessEvent)
                                         .getPawnPosition()
