@@ -14,10 +14,10 @@ public record BoardPosition(String position) {
     }
 
     public char getRow() {
-        return position.charAt(0);
+        return position.charAt(1);
     }
 
     public char getCol() {
-        return position.charAt(1);
+        return position.charAt(0);
     }
 }
