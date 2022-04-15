@@ -20,4 +20,9 @@ public record BoardPosition(String position) {
     public char getCol() {
         return position.charAt(0);
     }
+
+    @Override
+    public String toString() {
+        return position;
+    }
 }
