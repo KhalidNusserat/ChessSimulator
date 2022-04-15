@@ -13,15 +13,15 @@ public interface ChessGameModel {
 
     void setDone(boolean done);
 
-    Player getWinner();
+    ChessPlayer getWinner();
 
-    void setWinner(Player winner);
+    void setWinner(ChessPlayer winner);
 
-    Player getWhitePlayer();
+    ChessPlayer getWhitePlayer();
 
-    Player getBlackPlayer();
+    ChessPlayer getBlackPlayer();
 
-    Player getCurrentPlayer();
+    ChessPlayer getCurrentPlayer();
 
     void updateCurrentBoardState(BoardState boardState);
 }

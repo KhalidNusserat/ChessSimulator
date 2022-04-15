@@ -4,31 +4,31 @@ import java.util.Collection;
 import java.util.Stack;
 
 public class DefaultChessGameModel implements ChessGameModel {
-    private final Player whitePlayer;
+    private final ChessPlayer whiteChessPlayer;
 
-    private final Player blackPlayer;
+    private final ChessPlayer blackChessPlayer;
 
     private final Stack<BoardState> boardStates;
 
-    private Player currentPlayer;
+    private ChessPlayer currentChessPlayer;
 
-    private Player winner;
+    private ChessPlayer winner;
 
     private boolean isDone;
 
     public DefaultChessGameModel(String whitePlayerName, String blackPlayerName) {
-        whitePlayer = new Player(whitePlayerName);
-        blackPlayer = new Player(blackPlayerName);
+        whiteChessPlayer = new ChessPlayer(whitePlayerName);
+        blackChessPlayer = new ChessPlayer(blackPlayerName);
         boardStates = new Stack<>();
         boardStates.add(new DefaultBoardState());
     }
 
     @Override
     public void changeTurns() {
-        currentPlayer = (
-                currentPlayer == whitePlayer
-                        ? blackPlayer
-                        : whitePlayer
+        currentChessPlayer = (
+                currentChessPlayer == whiteChessPlayer
+                        ? blackChessPlayer
+                        : whiteChessPlayer
         );
     }
 
@@ -53,28 +53,28 @@ public class DefaultChessGameModel implements ChessGameModel {
     }
 
     @Override
-    public Player getWinner() {
+    public ChessPlayer getWinner() {
         return winner;
     }
 
     @Override
-    public void setWinner(Player winner) {
+    public void setWinner(ChessPlayer winner) {
         this.winner = winner;
     }
 
     @Override
-    public Player getWhitePlayer() {
-        return whitePlayer;
+    public ChessPlayer getWhitePlayer() {
+        return whiteChessPlayer;
     }
 
     @Override
-    public Player getBlackPlayer() {
-        return blackPlayer;
+    public ChessPlayer getBlackPlayer() {
+        return blackChessPlayer;
     }
 
     @Override
-    public Player getCurrentPlayer() {
-        return currentPlayer;
+    public ChessPlayer getCurrentPlayer() {
+        return currentChessPlayer;
     }
 
     @Override
