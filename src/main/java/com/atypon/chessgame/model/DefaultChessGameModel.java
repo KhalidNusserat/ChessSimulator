@@ -38,6 +38,11 @@ public class DefaultChessGameModel implements ChessGameModel {
     }
 
     @Override
+    public void setCurrentBoardState(BoardState boardState) {
+        boardStates.push(boardState);
+    }
+
+    @Override
     public Collection<BoardState> getBoardStates() {
         return boardStates;
     }
@@ -75,10 +80,5 @@ public class DefaultChessGameModel implements ChessGameModel {
     @Override
     public ChessPlayer getCurrentPlayer() {
         return currentChessPlayer;
-    }
-
-    @Override
-    public void setCurrentBoardState(BoardState boardState) {
-        boardStates.push(boardState);
     }
 }

@@ -7,6 +7,8 @@ public interface ChessGameModel {
 
     BoardState getCurrentBoardState();
 
+    void setCurrentBoardState(BoardState boardState);
+
     Collection<BoardState> getBoardStates();
 
     boolean isDone();
@@ -22,6 +24,4 @@ public interface ChessGameModel {
     ChessPlayer getBlackPlayer();
 
     ChessPlayer getCurrentPlayer();
-
-    void setCurrentBoardState(BoardState boardState);
 }
