@@ -17,20 +17,6 @@ public class DefaultEventsHandler implements EventsHandler {
     }
 
     @Override
-    public <E extends ChessEvent> void addAllEventHandlers(Class<E> eventClass, Collection<EventHandler> eventHandlers) {
-        for (EventHandler eventHandler : eventHandlers) {
-            this.eventHandlers.put(eventClass, eventHandler);
-        }
-    }
-
-    @Override
-    public <E extends ChessEvent> void addAllEventHandlers(Class<E> eventClass, EventHandler... eventHandlers) {
-        for (EventHandler eventHandler : eventHandlers) {
-            this.eventHandlers.put(eventClass, eventHandler);
-        }
-    }
-
-    @Override
     public void handleEvent(ChessEvent chessEvent, ChessGameModel chessGameModel) {
         eventHandlers.get(chessEvent.getClass()).handle(chessEvent, chessGameModel);
     }
