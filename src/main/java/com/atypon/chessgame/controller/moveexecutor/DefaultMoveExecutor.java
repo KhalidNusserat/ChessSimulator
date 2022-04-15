@@ -13,7 +13,7 @@ public class DefaultMoveExecutor implements MoveExecutor {
     public void execute(ChessMove chessMove, ChessGameModel chessGameModel) {
         ChessPiece firstPiece = chessGameModel.getCurrentBoardState().getPieceAt(chessMove.from());
         ChessPiece secondPiece = chessGameModel.getCurrentBoardState().getPieceAt(chessMove.to());
-        if (firstPiece.color() == secondPiece.color()) {
+        if (firstPiece != null && secondPiece != null && firstPiece.color() == secondPiece.color()) {
             Set<ChessPieceType> pieceTypes = Set.of(firstPiece.type(), secondPiece.type());
             if (pieceTypes.containsAll(List.of(ChessPieceType.ROOK, ChessPieceType.KING))) {
                 chessGameModel.setCurrentBoardState(
