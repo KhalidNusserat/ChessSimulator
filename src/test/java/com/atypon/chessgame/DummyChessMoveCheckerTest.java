@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class DummyMoveCheckerTest {
+public class DummyChessMoveCheckerTest {
     @Test
     public void shouldCheckMoves() {
         ChessGameModel chessGameModel = new DefaultChessGameModel("Khalid", "Bin Hatem");

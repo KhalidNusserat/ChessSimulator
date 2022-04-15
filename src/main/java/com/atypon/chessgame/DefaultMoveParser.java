@@ -1,6 +1,6 @@
 package com.atypon.chessgame;
 
-import com.atypon.chessgame.controller.movechecker.Move;
+import com.atypon.chessgame.controller.movechecker.ChessMove;
 import com.atypon.chessgame.model.BoardPosition;
 import com.atypon.chessgame.model.ChessColor;
 
@@ -11,13 +11,13 @@ public class DefaultMoveParser implements MoveParser {
     private static final String pattern = "^ *move +([a-hA-H][1-8]) +([a-hA-H][1-8]) *$";
 
     @Override
-    public Move parse(String move, ChessColor playerColor) {
+    public ChessMove parse(String move, ChessColor playerColor) {
         Pattern startWithMove = Pattern.compile(pattern);
         Matcher matcher = startWithMove.matcher(move);
         if (matcher.matches()) {
             String from = matcher.group(1);
             String to = matcher.group(2);
-            return new Move(
+            return new ChessMove(
                     playerColor,
                     BoardPosition.at(from),
                     BoardPosition.at(to)

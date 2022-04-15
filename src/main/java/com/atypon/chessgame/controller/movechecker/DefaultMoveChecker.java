@@ -27,7 +27,7 @@ public class DefaultMoveChecker implements MoveChecker {
     }
 
     @Override
-    public boolean check(Move move, ChessGameModel chessGameModel) {
-        return moveRules.stream().allMatch(moveRule -> moveRule.checkMove(move, chessGameModel));
+    public boolean check(ChessMove chessMove, ChessGameModel chessGameModel) {
+        return moveRules.stream().allMatch(moveRule -> moveRule.checkMove(chessMove, chessGameModel));
     }
 }

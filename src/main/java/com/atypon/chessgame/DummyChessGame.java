@@ -6,7 +6,7 @@ import com.atypon.chessgame.controller.eventschecker.EventsChecker;
 import com.atypon.chessgame.controller.eventshandler.DummyEventsHandler;
 import com.atypon.chessgame.controller.eventshandler.EventsHandler;
 import com.atypon.chessgame.controller.movechecker.DummyMoveChecker;
-import com.atypon.chessgame.controller.movechecker.Move;
+import com.atypon.chessgame.controller.movechecker.ChessMove;
 import com.atypon.chessgame.controller.movechecker.MoveChecker;
 import com.atypon.chessgame.controller.moveexecutor.MoveExecutor;
 import com.atypon.chessgame.model.ChessColor;
@@ -38,9 +38,9 @@ public class DummyChessGame implements ChessGame {
 
     private void playMove(String moveCommand, ChessColor playerColor) throws IllegalArgumentException {
         try {
-            Move move = moveParser.parse(moveCommand, playerColor);
-            if (moveChecker.check(move, chessGameModel)) {
-                moveExecutor.execute(move, chessGameModel);
+            ChessMove chessMove = moveParser.parse(moveCommand, playerColor);
+            if (moveChecker.check(chessMove, chessGameModel)) {
+                moveExecutor.execute(chessMove, chessGameModel);
             } else {
                 throw new IllegalArgumentException("Illegal move.");
             }
