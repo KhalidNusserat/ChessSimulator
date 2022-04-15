@@ -3,6 +3,7 @@ package com.atypon.chessgame.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class DefaultBoardState implements BoardState {
     private final Map<BoardPosition, ChessPiece> board = new HashMap<>();
@@ -50,8 +51,16 @@ public class DefaultBoardState implements BoardState {
         DefaultBoardState newBoardState = new DefaultBoardState(this);
         ChessPiece firstPiece = board.get(firstPosition);
         ChessPiece secondPiece = board.get(secondPosition);
-        newBoardState.board.put(firstPosition, secondPiece);
-        newBoardState.board.put(secondPosition, firstPiece);
+        if (secondPiece != null) {
+            newBoardState.board.put(firstPosition, secondPiece);
+        } else {
+            newBoardState.board.remove(firstPosition);
+        }
+        if (firstPiece != null) {
+            newBoardState.board.put(secondPosition, firstPiece);
+        } else {
+            newBoardState.board.remove(secondPosition);
+        }
         return newBoardState;
     }
 
@@ -65,6 +74,7 @@ public class DefaultBoardState implements BoardState {
     @Override
     public List<BoardPosition> getPositionsOf(ChessPieceType type) {
         return board.keySet().stream()
+                .filter(board::containsKey)
                 .filter(position -> board.get(position).type().equals(type))
                 .toList();
     }
@@ -72,6 +82,7 @@ public class DefaultBoardState implements BoardState {
     @Override
     public List<BoardPosition> getPositionsOf(ChessPiece piece) {
         return board.keySet().stream()
+                .filter(board::containsKey)
                 .filter(position -> board.get(position).equals(piece))
                 .toList();
     }
