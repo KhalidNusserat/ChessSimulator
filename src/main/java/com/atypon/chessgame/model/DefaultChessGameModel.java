@@ -21,6 +21,7 @@ public class DefaultChessGameModel implements ChessGameModel {
         blackChessPlayer = new ChessPlayer(blackPlayerName);
         boardStates = new Stack<>();
         boardStates.add(new DefaultBoardState());
+        currentChessPlayer = whiteChessPlayer;
     }
 
     @Override
