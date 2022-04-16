@@ -5,7 +5,7 @@ import com.atypon.chessgame.controller.DummyGameController;
 import com.atypon.chessgame.controller.eventschecker.DummyEventsChecker;
 import com.atypon.chessgame.controller.eventshandler.DummyEventsHandler;
 import com.atypon.chessgame.controller.movechecker.DummyMoveChecker;
-import com.atypon.chessgame.controller.movechecker.InvalidMove;
+import com.atypon.chessgame.controller.movechecker.IllegalMove;
 import com.atypon.chessgame.controller.moveexecutor.DefaultMoveExecutor;
 import com.atypon.chessgame.model.ChessColor;
 import com.atypon.chessgame.model.ChessGameModel;
@@ -35,7 +35,7 @@ public class DummyChessGame implements ChessGame {
             chessGameController.executeMoveIfLegal(moveParser.parse(move, ChessColor.WHITE));
             chessGameController.handleEvents();
             chessGameModel.changeTurns();
-        } catch (InvalidMove e) {
+        } catch (IllegalMove e) {
             System.out.println(e.getMessage());
         }
     }
@@ -46,7 +46,7 @@ public class DummyChessGame implements ChessGame {
             chessGameController.executeMoveIfLegal(moveParser.parse(move, ChessColor.BLACK));
             chessGameController.handleEvents();
             chessGameModel.changeTurns();
-        } catch (InvalidMove e) {
+        } catch (IllegalMove e) {
             System.out.println(e.getMessage());
         }
     }
