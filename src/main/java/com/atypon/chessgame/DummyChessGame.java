@@ -68,7 +68,7 @@ public class DummyChessGame implements ChessGame {
 
     @Override
     public void printWinnerName() {
-        System.out.printf("The winner is %s", chessGameModel.getWinner());
+        System.out.printf("The winner is %s", chessGameModel.getWinner().name());
     }
 
     @Override
