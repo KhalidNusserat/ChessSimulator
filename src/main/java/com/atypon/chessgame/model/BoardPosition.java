@@ -1,6 +1,10 @@
 package com.atypon.chessgame.model;
 
-public record BoardPosition(String position) {
+import java.util.Objects;
+
+public class BoardPosition{
+    private final String position;
+
     public BoardPosition(String position) {
         if (position.matches("^[a-hA-H][1-8]$")) {
             this.position = position;
@@ -24,5 +28,18 @@ public record BoardPosition(String position) {
     @Override
     public String toString() {
         return position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BoardPosition position1 = (BoardPosition) o;
+        return position.equalsIgnoreCase(position1.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position.toLowerCase());
     }
 }
