@@ -22,7 +22,7 @@ public class DummyChessMoveCheckerTest {
                             chessGameModel
                     )
             );
-        } catch (InvalidMoveCommand e) {
+        } catch (InvalidMoveCommand | InvalidBoardPosition e) {
             fail();
         }
     }

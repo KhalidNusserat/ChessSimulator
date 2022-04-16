@@ -8,15 +8,22 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DefaultMoveParser implements MoveParser {
-    private static final String pattern = "^ *move +([a-hA-H][1-8]) +([a-hA-H][1-8]) *$";
+    private static final String commandPattern = "^ *move +(\\S+) +(\\S+) *$";
+
+    private static final String boardPositionPattern = "^[a-hA-H][1-8]$";
 
     @Override
-    public ChessMove parse(String moveCommand, ChessColor playerColor) throws InvalidMoveCommand {
-        Pattern startWithMove = Pattern.compile(pattern);
+    public ChessMove parse(String moveCommand, ChessColor playerColor) throws InvalidMoveCommand, InvalidBoardPosition {
+        Pattern startWithMove = Pattern.compile(commandPattern);
         Matcher matcher = startWithMove.matcher(moveCommand);
         if (matcher.matches()) {
             String from = matcher.group(1);
             String to = matcher.group(2);
+            if (!from.matches(boardPositionPattern)) {
+                throw new InvalidBoardPosition(from);
+            } else if (!to.matches(boardPositionPattern)) {
+                throw new InvalidBoardPosition(to);
+            }
             return new ChessMove(
                     playerColor,
                     BoardPosition.at(from),

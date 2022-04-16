@@ -16,7 +16,7 @@ public class DefaultChessMoveParserTest {
                     parser.parse("move A1 B2", ChessColor.WHITE),
                     new ChessMove(ChessColor.WHITE, BoardPosition.at("A1"), BoardPosition.at("B2"))
             );
-        } catch (InvalidMoveCommand e) {
+        } catch (InvalidMoveCommand | InvalidBoardPosition e) {
             fail();
         }
         try {
@@ -24,7 +24,7 @@ public class DefaultChessMoveParserTest {
                     parser.parse("move  B1  C4 ", ChessColor.BLACK),
                     new ChessMove(ChessColor.BLACK, BoardPosition.at("B1"), BoardPosition.at("C4"))
             );
-        } catch (InvalidMoveCommand e) {
+        } catch (InvalidMoveCommand | InvalidBoardPosition e) {
             fail();
         }
         assertThrows(
