@@ -2,7 +2,7 @@ package com.atypon.chessgame;
 
 import com.atypon.chessgame.controller.movechecker.ChessMove;
 import com.atypon.chessgame.model.BoardPosition;
-import com.atypon.chessgame.model.ChessColor;
+import com.atypon.chessgame.model.Color;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,7 +21,7 @@ public class DefaultMoveParser implements MoveParser {
     }
 
     @Override
-    public ChessMove parse(String moveCommand, ChessColor playerColor) throws InvalidMoveCommand, InvalidBoardPosition {
+    public ChessMove parse(String moveCommand, Color playerColor) throws InvalidMoveCommand, InvalidBoardPosition {
         if (!moveCommand.matches(commandPattern)) {
             throw new InvalidMoveCommand(moveCommand);
         }

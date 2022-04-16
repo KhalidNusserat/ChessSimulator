@@ -6,13 +6,13 @@ import com.atypon.chessgame.model.*;
 
 public class DummyPawnPromotionEventHandler implements EventHandler {
     @Override
-    public void handle(ChessEvent chessEvent, ChessGameModel chessGameModel) {
+    public void handle(ChessEvent chessEvent, GameModel gameModel) {
         BoardPosition pawnPosition = ((PawnPromotionEvent) chessEvent).getPawnPosition();
-        BoardState currentBoardState = chessGameModel.getCurrentBoardState();
-        ChessColor color = currentBoardState.getPieceAt(pawnPosition).color();
-        chessGameModel.setCurrentBoardState(
+        BoardState currentBoardState = gameModel.getCurrentBoardState();
+        Color color = currentBoardState.getPieceAt(pawnPosition).color();
+        gameModel.setCurrentBoardState(
                 currentBoardState
-                        .with(new ChessPiece(ChessPieceType.QUEEN, color))
+                        .with(new Piece(PieceType.QUEEN, color))
                         .at(pawnPosition)
         );
     }

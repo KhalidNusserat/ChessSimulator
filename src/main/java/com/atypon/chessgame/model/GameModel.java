@@ -2,7 +2,7 @@ package com.atypon.chessgame.model;
 
 import java.util.Collection;
 
-public interface ChessGameModel {
+public interface GameModel {
     void changeTurns();
 
     BoardState getCurrentBoardState();
@@ -15,15 +15,15 @@ public interface ChessGameModel {
 
     void setDone(boolean done);
 
-    ChessPlayer getWinner();
+    Player getWinner();
 
-    void setWinner(ChessPlayer winner);
+    void setWinner(Player winner);
 
-    void setWinner(ChessColor winnerColor);
+    void setWinner(Color winnerColor);
 
-    ChessPlayer getWhitePlayer();
+    Player getWhitePlayer();
 
-    ChessPlayer getBlackPlayer();
+    Player getBlackPlayer();
 
-    ChessPlayer getCurrentPlayer();
+    Player getCurrentPlayer();
 }

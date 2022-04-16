@@ -1,6 +1,6 @@
 package com.atypon.chessgame.controller.movechecker;
 
-import com.atypon.chessgame.model.ChessGameModel;
+import com.atypon.chessgame.model.GameModel;
 
 import java.util.Collection;
 
@@ -11,5 +11,5 @@ public interface MoveChecker {
 
     void addAllRules(MoveRule... moveRules);
 
-    boolean check(ChessMove chessMove, ChessGameModel defaultChessGameModel);
+    boolean check(ChessMove chessMove, GameModel defaultGameModel);
 }

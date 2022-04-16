@@ -1,17 +1,17 @@
 package com.atypon.chessgame.model;
 
-public record ChessPiece(ChessPieceType type, ChessColor color) {
-    public static ChessPiece getWhite(ChessPieceType type) {
-        return new ChessPiece(type, ChessColor.WHITE);
+public record Piece(PieceType type, Color color) {
+    public static Piece getWhite(PieceType type) {
+        return new Piece(type, Color.WHITE);
     }
 
-    public static ChessPiece getBlack(ChessPieceType type) {
-        return new ChessPiece(type, ChessColor.BLACK);
+    public static Piece getBlack(PieceType type) {
+        return new Piece(type, Color.BLACK);
     }
 
     @Override
     public String toString() {
-        String pieceColor = (color == ChessColor.WHITE ? "W" : "B");
+        String pieceColor = (color == Color.WHITE ? "W" : "B");
         String pieceType = "";
         switch (type) {
             case KING -> pieceType = "K";

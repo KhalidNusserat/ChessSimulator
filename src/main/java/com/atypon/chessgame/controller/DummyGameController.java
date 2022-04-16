@@ -6,10 +6,10 @@ import com.atypon.chessgame.controller.movechecker.ChessMove;
 import com.atypon.chessgame.controller.movechecker.IllegalMove;
 import com.atypon.chessgame.controller.movechecker.MoveChecker;
 import com.atypon.chessgame.controller.moveexecutor.MoveExecutor;
-import com.atypon.chessgame.model.ChessGameModel;
+import com.atypon.chessgame.model.GameModel;
 
-public class DummyGameController implements ChessGameController {
-    private ChessGameModel chessGameModel;
+public class DummyGameController implements GameController {
+    private GameModel gameModel;
 
     private EventsChecker eventsChecker;
 
@@ -20,8 +20,8 @@ public class DummyGameController implements ChessGameController {
     private MoveExecutor moveExecutor;
 
     @Override
-    public void setChessGameModel(ChessGameModel chessGameModel) {
-        this.chessGameModel = chessGameModel;
+    public void setChessGameModel(GameModel gameModel) {
+        this.gameModel = gameModel;
     }
 
     @Override
@@ -46,8 +46,8 @@ public class DummyGameController implements ChessGameController {
 
     @Override
     public void executeMoveIfLegal(ChessMove chessMove) throws IllegalMove {
-        if (moveChecker.check(chessMove, chessGameModel)) {
-            moveExecutor.execute(chessMove, chessGameModel);
+        if (moveChecker.check(chessMove, gameModel)) {
+            moveExecutor.execute(chessMove, gameModel);
         } else {
             throw new IllegalMove(chessMove);
         }
@@ -55,6 +55,6 @@ public class DummyGameController implements ChessGameController {
 
     @Override
     public void handleEvents() {
-        eventsHandler.handleEvents(eventsChecker.getEvents(chessGameModel), chessGameModel);
+        eventsHandler.handleEvents(eventsChecker.getEvents(gameModel), gameModel);
     }
 }

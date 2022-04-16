@@ -1,6 +1,6 @@
 package com.atypon.chessgame.model;
 
-public enum ChessPieceType {
+public enum PieceType {
     PAWN,
     ROOK,
     KNIGHT,

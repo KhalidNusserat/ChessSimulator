@@ -1,40 +1,40 @@
 package com.atypon.chessgame;
 
-import com.atypon.chessgame.controller.ChessGameController;
+import com.atypon.chessgame.controller.GameController;
 import com.atypon.chessgame.controller.DummyGameController;
 import com.atypon.chessgame.controller.eventschecker.DummyEventsChecker;
 import com.atypon.chessgame.controller.eventshandler.DummyEventsHandler;
 import com.atypon.chessgame.controller.movechecker.DummyMoveChecker;
 import com.atypon.chessgame.controller.movechecker.IllegalMove;
 import com.atypon.chessgame.controller.moveexecutor.DefaultMoveExecutor;
-import com.atypon.chessgame.model.ChessColor;
-import com.atypon.chessgame.model.ChessGameModel;
-import com.atypon.chessgame.model.DefaultChessGameModel;
+import com.atypon.chessgame.model.Color;
+import com.atypon.chessgame.model.GameModel;
+import com.atypon.chessgame.model.DefaultGameModel;
 
 public class DummyChessGame implements ChessGame {
-    private final ChessGameModel chessGameModel;
+    private final GameModel gameModel;
 
-    private final ChessGameController chessGameController;
+    private final GameController gameController;
 
     private final MoveParser moveParser;
 
     public DummyChessGame(String whitePlayer, String blackPlayer) {
-        chessGameModel = new DefaultChessGameModel(whitePlayer, blackPlayer);
-        chessGameController = new DummyGameController();
-        chessGameController.setChessGameModel(chessGameModel);
-        chessGameController.setEventsChecker(new DummyEventsChecker());
-        chessGameController.setEventsHandler(new DummyEventsHandler());
-        chessGameController.setMoveChecker(new DummyMoveChecker());
-        chessGameController.setMoveExecutor(new DefaultMoveExecutor());
+        gameModel = new DefaultGameModel(whitePlayer, blackPlayer);
+        gameController = new DummyGameController();
+        gameController.setChessGameModel(gameModel);
+        gameController.setEventsChecker(new DummyEventsChecker());
+        gameController.setEventsHandler(new DummyEventsHandler());
+        gameController.setMoveChecker(new DummyMoveChecker());
+        gameController.setMoveExecutor(new DefaultMoveExecutor());
         moveParser = new DefaultMoveParser();
     }
 
     @Override
     public void playWhite(String move) {
         try {
-            chessGameController.executeMoveIfLegal(moveParser.parse(move, ChessColor.WHITE));
-            chessGameController.handleEvents();
-            chessGameModel.changeTurns();
+            gameController.executeMoveIfLegal(moveParser.parse(move, Color.WHITE));
+            gameController.handleEvents();
+            gameModel.changeTurns();
         } catch (IllegalMove | InvalidMoveCommand | InvalidBoardPosition e) {
             System.out.println(e.getMessage());
         }
@@ -43,9 +43,9 @@ public class DummyChessGame implements ChessGame {
     @Override
     public void playBlack(String move) {
         try {
-            chessGameController.executeMoveIfLegal(moveParser.parse(move, ChessColor.BLACK));
-            chessGameController.handleEvents();
-            chessGameModel.changeTurns();
+            gameController.executeMoveIfLegal(moveParser.parse(move, Color.BLACK));
+            gameController.handleEvents();
+            gameModel.changeTurns();
         } catch (IllegalMove | InvalidMoveCommand | InvalidBoardPosition e) {
             System.out.println(e.getMessage());
         }
@@ -53,26 +53,26 @@ public class DummyChessGame implements ChessGame {
 
     @Override
     public boolean isDone() {
-        return chessGameModel.isDone();
+        return gameModel.isDone();
     }
 
     @Override
     public boolean isWhiteTurn() {
-        return chessGameModel.getCurrentPlayer().equals(chessGameModel.getWhitePlayer());
+        return gameModel.getCurrentPlayer().equals(gameModel.getWhitePlayer());
     }
 
     @Override
     public boolean isBlackTurn() {
-        return chessGameModel.getCurrentPlayer().equals(chessGameModel.getBlackPlayer());
+        return gameModel.getCurrentPlayer().equals(gameModel.getBlackPlayer());
     }
 
     @Override
     public void printWinnerName() {
-        System.out.printf("The winner is %s", chessGameModel.getWinner().name());
+        System.out.printf("The winner is %s", gameModel.getWinner().name());
     }
 
     @Override
     public void printCurrentBoard() {
-        System.out.println(chessGameModel.getCurrentBoardState());
+        System.out.println(gameModel.getCurrentBoardState());
     }
 }

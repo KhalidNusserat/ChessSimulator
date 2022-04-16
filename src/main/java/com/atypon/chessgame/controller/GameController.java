@@ -6,10 +6,10 @@ import com.atypon.chessgame.controller.movechecker.ChessMove;
 import com.atypon.chessgame.controller.movechecker.IllegalMove;
 import com.atypon.chessgame.controller.movechecker.MoveChecker;
 import com.atypon.chessgame.controller.moveexecutor.MoveExecutor;
-import com.atypon.chessgame.model.ChessGameModel;
+import com.atypon.chessgame.model.GameModel;
 
-public interface ChessGameController {
-    void setChessGameModel(ChessGameModel chessGameModel);
+public interface GameController {
+    void setChessGameModel(GameModel gameModel);
 
     void setEventsChecker(EventsChecker eventsChecker);
 

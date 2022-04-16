@@ -1,7 +1,7 @@
 package com.atypon.chessgame.controller.eventshandler;
 
 import com.atypon.chessgame.controller.eventschecker.ChessEvent;
-import com.atypon.chessgame.model.ChessGameModel;
+import com.atypon.chessgame.model.GameModel;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,14 +16,14 @@ public class DefaultEventsHandler implements EventsHandler {
     }
 
     @Override
-    public void handleEvent(ChessEvent chessEvent, ChessGameModel chessGameModel) {
-        eventHandlers.get(chessEvent.getClass()).handle(chessEvent, chessGameModel);
+    public void handleEvent(ChessEvent chessEvent, GameModel gameModel) {
+        eventHandlers.get(chessEvent.getClass()).handle(chessEvent, gameModel);
     }
 
     @Override
-    public void handleEvents(List<ChessEvent> chessEvents, ChessGameModel chessGameModel) {
+    public void handleEvents(List<ChessEvent> chessEvents, GameModel gameModel) {
         for (ChessEvent chessEvent : chessEvents) {
-            eventHandlers.get(chessEvent.getClass()).handle(chessEvent, chessGameModel);
+            eventHandlers.get(chessEvent.getClass()).handle(chessEvent, gameModel);
         }
     }
 }

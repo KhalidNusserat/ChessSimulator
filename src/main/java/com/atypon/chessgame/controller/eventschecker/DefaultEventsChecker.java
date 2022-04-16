@@ -1,6 +1,6 @@
 package com.atypon.chessgame.controller.eventschecker;
 
-import com.atypon.chessgame.model.ChessGameModel;
+import com.atypon.chessgame.model.GameModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,9 +26,9 @@ public class DefaultEventsChecker implements EventsChecker {
     }
 
     @Override
-    public List<ChessEvent> getEvents(ChessGameModel chessGameModel) {
+    public List<ChessEvent> getEvents(GameModel gameModel) {
         List<ChessEvent> chessEvents = new ArrayList<>();
-        eventCheckers.forEach(eventChecker -> chessEvents.addAll(eventChecker.check(chessGameModel)));
+        eventCheckers.forEach(eventChecker -> chessEvents.addAll(eventChecker.check(gameModel)));
         return chessEvents;
     }
 }

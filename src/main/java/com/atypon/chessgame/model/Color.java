@@ -1,6 +1,6 @@
 package com.atypon.chessgame.model;
 
-public enum ChessColor {
+public enum Color {
     BLACK,
     WHITE
 }

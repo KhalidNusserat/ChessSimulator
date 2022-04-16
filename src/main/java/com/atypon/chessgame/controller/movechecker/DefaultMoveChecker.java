@@ -1,6 +1,6 @@
 package com.atypon.chessgame.controller.movechecker;
 
-import com.atypon.chessgame.model.ChessGameModel;
+import com.atypon.chessgame.model.GameModel;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,7 +27,7 @@ public class DefaultMoveChecker implements MoveChecker {
     }
 
     @Override
-    public boolean check(ChessMove chessMove, ChessGameModel chessGameModel) {
-        return moveRules.stream().allMatch(moveRule -> moveRule.checkMove(chessMove, chessGameModel));
+    public boolean check(ChessMove chessMove, GameModel gameModel) {
+        return moveRules.stream().allMatch(moveRule -> moveRule.checkMove(chessMove, gameModel));
     }
 }

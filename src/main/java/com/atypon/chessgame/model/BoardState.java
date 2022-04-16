@@ -9,21 +9,21 @@ public interface BoardState {
         BoardState swappedWith(BoardPosition otherBoardPosition);
     }
 
-    ChessPiece getPieceAt(BoardPosition position);
+    Piece getPieceAt(BoardPosition position);
 
     BoardState without(BoardPosition position);
 
-    IntermediateBoardState with(ChessPiece chessPiece);
+    IntermediateBoardState with(Piece piece);
 
     IntermediateBoardState with(BoardPosition boardPosition);
 
-    List<BoardPosition> getPositionsOf(ChessPieceType type);
+    List<BoardPosition> getPositionsOf(PieceType type);
 
-    List<BoardPosition> getPositionsOf(ChessPiece piece);
+    List<BoardPosition> getPositionsOf(Piece piece);
 
-    boolean contains(ChessPieceType type);
+    boolean contains(PieceType type);
 
-    boolean contains(ChessPiece piece);
+    boolean contains(Piece piece);
 
     Optional<BoardPosition> getWhiteKingPosition();
 

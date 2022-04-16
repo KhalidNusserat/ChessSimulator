@@ -13,13 +13,13 @@ public class DummyEventsChecker extends DefaultEventsChecker {
                     List<ChessEvent> chessEvents = new ArrayList<>();
                     chessGameModel
                             .getCurrentBoardState()
-                            .getPositionsOf(ChessPiece.getWhite(ChessPieceType.PAWN))
+                            .getPositionsOf(Piece.getWhite(PieceType.PAWN))
                             .stream()
                             .filter(position -> position.getRow() == '8')
                             .forEach(position -> chessEvents.add(PawnPromotionEvent.at(position)));
                     chessGameModel
                             .getCurrentBoardState()
-                            .getPositionsOf(ChessPiece.getBlack(ChessPieceType.PAWN))
+                            .getPositionsOf(Piece.getBlack(PieceType.PAWN))
                             .stream()
                             .filter(position -> position.getRow() == '1')
                             .forEach(position -> chessEvents.add(PawnPromotionEvent.at(position)));
@@ -27,9 +27,9 @@ public class DummyEventsChecker extends DefaultEventsChecker {
                 },
                 chessGameModel -> {
                     BoardState boardState = chessGameModel.getCurrentBoardState();
-                    if (boardState.getPositionsOf(ChessPieceType.KING).size() == 1) {
-                        BoardPosition positionOfKing = boardState.getPositionsOf(ChessPieceType.KING).get(0);
-                        ChessColor winnerColor = boardState.getPieceAt(positionOfKing).color();
+                    if (boardState.getPositionsOf(PieceType.KING).size() == 1) {
+                        BoardPosition positionOfKing = boardState.getPositionsOf(PieceType.KING).get(0);
+                        Color winnerColor = boardState.getPieceAt(positionOfKing).color();
                         return List.of(new CheckMateEvent(winnerColor));
                     }
                     return Collections.emptyList();
