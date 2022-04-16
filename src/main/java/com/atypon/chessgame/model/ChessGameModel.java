@@ -19,6 +19,8 @@ public interface ChessGameModel {
 
     void setWinner(ChessPlayer winner);
 
+    void setWinner(ChessColor winnerColor);
+
     ChessPlayer getWhitePlayer();
 
     ChessPlayer getBlackPlayer();

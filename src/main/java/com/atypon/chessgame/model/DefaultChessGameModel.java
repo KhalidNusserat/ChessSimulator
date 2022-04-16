@@ -69,6 +69,11 @@ public class DefaultChessGameModel implements ChessGameModel {
     }
 
     @Override
+    public void setWinner(ChessColor winnerColor) {
+        setWinner(winnerColor == ChessColor.WHITE ? whiteChessPlayer : blackChessPlayer);
+    }
+
+    @Override
     public ChessPlayer getWhitePlayer() {
         return whiteChessPlayer;
     }
