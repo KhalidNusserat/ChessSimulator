@@ -1,7 +1,7 @@
-package com.atypon.chessgame.controller.eventshandler;
+package com.atypon.chessgame.controller.eventscatcher;
 
-import com.atypon.chessgame.controller.eventschecker.CheckMateEvent;
-import com.atypon.chessgame.controller.eventschecker.ChessEvent;
+import com.atypon.chessgame.controller.eventsemitter.CheckMateEvent;
+import com.atypon.chessgame.controller.eventsemitter.ChessEvent;
 import com.atypon.chessgame.model.GameModel;
 
 public class CheckMateEventHandler implements EventHandler {

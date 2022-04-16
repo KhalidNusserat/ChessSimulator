@@ -1,4 +1,4 @@
-package com.atypon.chessgame.controller.eventschecker;
+package com.atypon.chessgame.controller.eventsemitter;
 
 import com.atypon.chessgame.model.Color;
 

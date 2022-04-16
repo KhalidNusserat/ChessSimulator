@@ -1,6 +1,6 @@
 package com.atypon.chessgame.controller.moveexecutor;
 
-import com.atypon.chessgame.controller.movechecker.ChessMove;
+import com.atypon.chessgame.controller.movevalidator.ChessMove;
 import com.atypon.chessgame.model.GameModel;
 import com.atypon.chessgame.model.Piece;
 import com.atypon.chessgame.model.PieceType;

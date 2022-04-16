@@ -1,10 +1,10 @@
 package com.atypon.chessgame.controller;
 
-import com.atypon.chessgame.controller.eventschecker.EventsEmitter;
-import com.atypon.chessgame.controller.eventshandler.EventsCatcher;
-import com.atypon.chessgame.controller.movechecker.ChessMove;
-import com.atypon.chessgame.controller.movechecker.IllegalMove;
-import com.atypon.chessgame.controller.movechecker.MoveValidator;
+import com.atypon.chessgame.controller.eventsemitter.EventsEmitter;
+import com.atypon.chessgame.controller.eventscatcher.EventsCatcher;
+import com.atypon.chessgame.controller.movevalidator.ChessMove;
+import com.atypon.chessgame.controller.movevalidator.IllegalMove;
+import com.atypon.chessgame.controller.movevalidator.MoveValidator;
 import com.atypon.chessgame.controller.moveexecutor.MoveExecutor;
 import com.atypon.chessgame.model.GameModel;
 

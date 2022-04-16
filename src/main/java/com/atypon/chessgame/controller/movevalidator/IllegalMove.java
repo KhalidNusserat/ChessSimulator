@@ -1,4 +1,4 @@
-package com.atypon.chessgame.controller.movechecker;
+package com.atypon.chessgame.controller.movevalidator;
 
 public class IllegalMove extends Exception {
     public IllegalMove() {

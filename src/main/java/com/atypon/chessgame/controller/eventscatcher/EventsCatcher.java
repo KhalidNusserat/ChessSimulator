@@ -1,6 +1,6 @@
-package com.atypon.chessgame.controller.eventshandler;
+package com.atypon.chessgame.controller.eventscatcher;
 
-import com.atypon.chessgame.controller.eventschecker.ChessEvent;
+import com.atypon.chessgame.controller.eventsemitter.ChessEvent;
 import com.atypon.chessgame.model.GameModel;
 
 import java.util.List;

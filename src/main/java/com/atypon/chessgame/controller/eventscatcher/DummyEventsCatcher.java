@@ -1,7 +1,7 @@
-package com.atypon.chessgame.controller.eventshandler;
+package com.atypon.chessgame.controller.eventscatcher;
 
-import com.atypon.chessgame.controller.eventschecker.CheckMateEvent;
-import com.atypon.chessgame.controller.eventschecker.PawnPromotionEvent;
+import com.atypon.chessgame.controller.eventsemitter.CheckMateEvent;
+import com.atypon.chessgame.controller.eventsemitter.PawnPromotionEvent;
 
 public class DummyEventsCatcher extends DefaultEventsCatcher {
     public DummyEventsCatcher() {
