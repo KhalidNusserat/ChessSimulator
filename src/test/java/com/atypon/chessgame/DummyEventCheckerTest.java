@@ -52,7 +52,7 @@ public class DummyEventCheckerTest {
                         .stream()
                         .anyMatch(eventClass -> eventClass instanceof PawnPromotionEvent)
         );
-        assertEquals(3, eventsChecker.getEvents(chessGameModel).size());
+        assertEquals(2, eventsChecker.getEvents(chessGameModel).size());
         assertTrue(
                 eventsChecker
                         .getEvents(chessGameModel)
@@ -75,11 +75,5 @@ public class DummyEventCheckerTest {
                                         .equals(BoardPosition.at("A1"))
                         )
         );
-    }
-
-    @Test
-    public void testCheckmateEvent() {
-        assertTrue(eventsChecker.getEvents(chessGameModel).isEmpty());
-        assertFalse(eventsChecker.getEvents(chessGameModel).isEmpty());
     }
 }
