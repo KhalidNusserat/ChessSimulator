@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class DefaultMoveChecker implements MoveChecker {
+public class DefaultMoveValidator implements MoveValidator {
     private final List<MoveRule> moveRules = new ArrayList<>();
 
     @Override

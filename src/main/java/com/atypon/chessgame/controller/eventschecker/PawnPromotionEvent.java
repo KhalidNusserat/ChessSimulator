@@ -1,13 +1,13 @@
 package com.atypon.chessgame.controller.eventschecker;
 
-import com.atypon.chessgame.model.BoardPosition;
+import com.atypon.chessgame.model.Position;
 
-public record PawnPromotionEvent(BoardPosition pawnPosition) implements ChessEvent {
-    public BoardPosition getPawnPosition() {
+public record PawnPromotionEvent(Position pawnPosition) implements ChessEvent {
+    public Position getPawnPosition() {
         return pawnPosition;
     }
 
-    public static PawnPromotionEvent at(BoardPosition pawnPosition) {
+    public static PawnPromotionEvent at(Position pawnPosition) {
         return new PawnPromotionEvent(pawnPosition);
     }
 }

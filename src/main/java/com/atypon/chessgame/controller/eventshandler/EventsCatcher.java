@@ -5,10 +5,10 @@ import com.atypon.chessgame.model.GameModel;
 
 import java.util.List;
 
-public interface EventsHandler {
+public interface EventsCatcher {
     <E extends ChessEvent> void addEventHandler(Class<E> eventClass, EventHandler eventHandler);
 
     void handleEvent(ChessEvent chessEvent, GameModel gameModel);
 
-    void handleEvents(List<ChessEvent> events, GameModel gameModel);
+    void catchEvents(List<ChessEvent> events, GameModel gameModel);
 }

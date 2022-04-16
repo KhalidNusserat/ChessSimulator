@@ -1,21 +1,21 @@
 package com.atypon.chessgame.controller;
 
-import com.atypon.chessgame.controller.eventschecker.EventsChecker;
-import com.atypon.chessgame.controller.eventshandler.EventsHandler;
+import com.atypon.chessgame.controller.eventschecker.EventsEmitter;
+import com.atypon.chessgame.controller.eventshandler.EventsCatcher;
 import com.atypon.chessgame.controller.movechecker.ChessMove;
 import com.atypon.chessgame.controller.movechecker.IllegalMove;
-import com.atypon.chessgame.controller.movechecker.MoveChecker;
+import com.atypon.chessgame.controller.movechecker.MoveValidator;
 import com.atypon.chessgame.controller.moveexecutor.MoveExecutor;
 import com.atypon.chessgame.model.GameModel;
 
 public interface GameController {
-    void setChessGameModel(GameModel gameModel);
+    void setGameModel(GameModel gameModel);
 
-    void setEventsChecker(EventsChecker eventsChecker);
+    void setEventsEmitter(EventsEmitter eventsEmitter);
 
-    void setEventsHandler(EventsHandler eventsHandler);
+    void setEventsCatcher(EventsCatcher eventsCatcher);
 
-    void setMoveChecker(MoveChecker moveChecker);
+    void setMoveValidator(MoveValidator moveValidator);
 
     void setMoveExecutor(MoveExecutor moveExecutor);
 

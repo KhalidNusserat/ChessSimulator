@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public class DefaultBoardState implements BoardState {
-    private final Map<BoardPosition, Piece> board = new HashMap<>();
+    private final Map<Position, Piece> board = new HashMap<>();
 
     private DefaultBoardState(DefaultBoardState other) {
         board.putAll(other.board);
@@ -20,21 +20,21 @@ public class DefaultBoardState implements BoardState {
     private void initializePlayer(Color color, String pawnsLevel, String otherPiecesLevel) {
         for (int i = 0; i < 8; i++) {
             board.put(
-                    BoardPosition.at((char) ('A' + i) + pawnsLevel),
+                    Position.at((char) ('A' + i) + pawnsLevel),
                     new Piece(PieceType.PAWN, color)
             );
         }
-        board.put(BoardPosition.at("A" + otherPiecesLevel), new Piece(PieceType.ROOK, color));
-        board.put(BoardPosition.at("H" + otherPiecesLevel), new Piece(PieceType.ROOK, color));
-        board.put(BoardPosition.at("B" + otherPiecesLevel), new Piece(PieceType.KNIGHT, color));
-        board.put(BoardPosition.at("G" + otherPiecesLevel), new Piece(PieceType.KNIGHT, color));
-        board.put(BoardPosition.at("C" + otherPiecesLevel), new Piece(PieceType.BISHOP, color));
-        board.put(BoardPosition.at("F" + otherPiecesLevel), new Piece(PieceType.BISHOP, color));
-        board.put(BoardPosition.at("D" + otherPiecesLevel), new Piece(PieceType.QUEEN, color));
-        board.put(BoardPosition.at("E" + otherPiecesLevel), new Piece(PieceType.KING, color));
+        board.put(Position.at("A" + otherPiecesLevel), new Piece(PieceType.ROOK, color));
+        board.put(Position.at("H" + otherPiecesLevel), new Piece(PieceType.ROOK, color));
+        board.put(Position.at("B" + otherPiecesLevel), new Piece(PieceType.KNIGHT, color));
+        board.put(Position.at("G" + otherPiecesLevel), new Piece(PieceType.KNIGHT, color));
+        board.put(Position.at("C" + otherPiecesLevel), new Piece(PieceType.BISHOP, color));
+        board.put(Position.at("F" + otherPiecesLevel), new Piece(PieceType.BISHOP, color));
+        board.put(Position.at("D" + otherPiecesLevel), new Piece(PieceType.QUEEN, color));
+        board.put(Position.at("E" + otherPiecesLevel), new Piece(PieceType.KING, color));
     }
 
-    private BoardState withPieceAt(Piece piece, BoardPosition position) {
+    private BoardState withPieceAt(Piece piece, Position position) {
         DefaultBoardState newBoardState = new DefaultBoardState(this);
         if (piece != null) {
             newBoardState.board.put(position, piece);
@@ -44,7 +44,7 @@ public class DefaultBoardState implements BoardState {
         return newBoardState;
     }
 
-    private BoardState withSwapped(BoardPosition firstPosition, BoardPosition secondPosition) {
+    private BoardState withSwapped(Position firstPosition, Position secondPosition) {
         Piece firstPiece = board.get(firstPosition);
         Piece secondPiece = board.get(secondPosition);
         return this
@@ -53,12 +53,12 @@ public class DefaultBoardState implements BoardState {
     }
 
     @Override
-    public Piece getPieceAt(BoardPosition position) {
+    public Piece getPieceAt(Position position) {
         return board.get(position);
     }
 
     @Override
-    public BoardState without(BoardPosition position) {
+    public BoardState without(Position position) {
         DefaultBoardState newBoardState = new DefaultBoardState(this);
         newBoardState.board.remove(position);
         return newBoardState;
@@ -70,19 +70,19 @@ public class DefaultBoardState implements BoardState {
     }
 
     @Override
-    public IntermediateBoardState with(BoardPosition boardPosition) {
-        return new DefaultIntermediateBoardState(boardPosition, this);
+    public IntermediateBoardState with(Position position) {
+        return new DefaultIntermediateBoardState(position, this);
     }
 
     @Override
-    public List<BoardPosition> getPositionsOf(PieceType type) {
+    public List<Position> getPositionsOf(PieceType type) {
         return board.keySet().stream()
                 .filter(boardPosition -> board.get(boardPosition).type() == type)
                 .toList();
     }
 
     @Override
-    public List<BoardPosition> getPositionsOf(Piece piece) {
+    public List<Position> getPositionsOf(Piece piece) {
         return board.keySet().stream()
                 .filter(boardPosition -> board.get(boardPosition).equals(piece))
                 .toList();
@@ -99,7 +99,7 @@ public class DefaultBoardState implements BoardState {
     }
 
     @Override
-    public Optional<BoardPosition> getWhiteKingPosition() {
+    public Optional<Position> getWhiteKingPosition() {
         Piece whiteKing = Piece.getWhite(PieceType.KING);
         if (!board.containsValue(whiteKing)) {
             return Optional.empty();
@@ -108,7 +108,7 @@ public class DefaultBoardState implements BoardState {
     }
 
     @Override
-    public Optional<BoardPosition> getBlackKingPosition() {
+    public Optional<Position> getBlackKingPosition() {
         Piece blackKing = Piece.getBlack(PieceType.KING);
         if (!board.containsValue(blackKing)) {
             return Optional.empty();
@@ -123,7 +123,7 @@ public class DefaultBoardState implements BoardState {
             boardString.append(row).append(": ");
             for (char col = 'A'; col <= 'H'; col++) {
                 String position = String.format("%c%d", col, row);
-                Piece piece = board.get(BoardPosition.at(position));
+                Piece piece = board.get(Position.at(position));
                 if (piece != null) {
                     boardString.append(piece).append(" ");
                 } else {
@@ -144,26 +144,26 @@ public class DefaultBoardState implements BoardState {
 
         private final DefaultBoardState boardState;
 
-        private BoardPosition boardPosition = null;
+        private Position position = null;
 
         public DefaultIntermediateBoardState(Piece piece, DefaultBoardState boardState) {
             this.piece = piece;
             this.boardState = boardState;
         }
 
-        public DefaultIntermediateBoardState(BoardPosition boardPosition, DefaultBoardState boardState) {
-            this.boardPosition = boardPosition;
+        public DefaultIntermediateBoardState(Position position, DefaultBoardState boardState) {
+            this.position = position;
             this.boardState = boardState;
         }
 
         @Override
-        public BoardState at(BoardPosition boardPosition) {
-            return boardState.withPieceAt(piece, boardPosition);
+        public BoardState at(Position position) {
+            return boardState.withPieceAt(piece, position);
         }
 
         @Override
-        public BoardState swappedWith(BoardPosition otherBoardPosition) {
-            return boardState.withSwapped(boardPosition, otherBoardPosition);
+        public BoardState swappedWith(Position otherPosition) {
+            return boardState.withSwapped(position, otherPosition);
         }
     }
 }

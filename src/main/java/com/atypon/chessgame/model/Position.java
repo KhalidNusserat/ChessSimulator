@@ -2,9 +2,9 @@ package com.atypon.chessgame.model;
 
 import java.util.Objects;
 
-public record BoardPosition(String position) {
-    public static BoardPosition at(String position) {
-        return new BoardPosition(position);
+public record Position(String position) {
+    public static Position at(String position) {
+        return new Position(position);
     }
 
     public char getRow() {
@@ -24,7 +24,7 @@ public record BoardPosition(String position) {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BoardPosition position1 = (BoardPosition) o;
+        Position position1 = (Position) o;
         return position.equalsIgnoreCase(position1.position);
     }
 

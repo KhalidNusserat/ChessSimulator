@@ -5,27 +5,27 @@ import java.util.Optional;
 
 public interface BoardState {
     interface IntermediateBoardState {
-        BoardState at(BoardPosition boardPosition);
-        BoardState swappedWith(BoardPosition otherBoardPosition);
+        BoardState at(Position position);
+        BoardState swappedWith(Position otherPosition);
     }
 
-    Piece getPieceAt(BoardPosition position);
+    Piece getPieceAt(Position position);
 
-    BoardState without(BoardPosition position);
+    BoardState without(Position position);
 
     IntermediateBoardState with(Piece piece);
 
-    IntermediateBoardState with(BoardPosition boardPosition);
+    IntermediateBoardState with(Position position);
 
-    List<BoardPosition> getPositionsOf(PieceType type);
+    List<Position> getPositionsOf(PieceType type);
 
-    List<BoardPosition> getPositionsOf(Piece piece);
+    List<Position> getPositionsOf(Piece piece);
 
     boolean contains(PieceType type);
 
     boolean contains(Piece piece);
 
-    Optional<BoardPosition> getWhiteKingPosition();
+    Optional<Position> getWhiteKingPosition();
 
-    Optional<BoardPosition> getBlackKingPosition();
+    Optional<Position> getBlackKingPosition();
 }

@@ -4,7 +4,7 @@ import com.atypon.chessgame.model.GameModel;
 
 import java.util.Collection;
 
-public interface MoveChecker {
+public interface MoveValidator {
     void addRule(MoveRule moveRule);
 
     void addAllRules(Collection<MoveRule> moveRules);

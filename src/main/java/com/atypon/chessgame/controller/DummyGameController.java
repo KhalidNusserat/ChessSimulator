@@ -1,42 +1,42 @@
 package com.atypon.chessgame.controller;
 
-import com.atypon.chessgame.controller.eventschecker.EventsChecker;
-import com.atypon.chessgame.controller.eventshandler.EventsHandler;
+import com.atypon.chessgame.controller.eventschecker.EventsEmitter;
+import com.atypon.chessgame.controller.eventshandler.EventsCatcher;
 import com.atypon.chessgame.controller.movechecker.ChessMove;
 import com.atypon.chessgame.controller.movechecker.IllegalMove;
-import com.atypon.chessgame.controller.movechecker.MoveChecker;
+import com.atypon.chessgame.controller.movechecker.MoveValidator;
 import com.atypon.chessgame.controller.moveexecutor.MoveExecutor;
 import com.atypon.chessgame.model.GameModel;
 
 public class DummyGameController implements GameController {
     private GameModel gameModel;
 
-    private EventsChecker eventsChecker;
+    private EventsEmitter eventsEmitter;
 
-    private EventsHandler eventsHandler;
+    private EventsCatcher eventsCatcher;
 
-    private MoveChecker moveChecker;
+    private MoveValidator moveValidator;
 
     private MoveExecutor moveExecutor;
 
     @Override
-    public void setChessGameModel(GameModel gameModel) {
+    public void setGameModel(GameModel gameModel) {
         this.gameModel = gameModel;
     }
 
     @Override
-    public void setEventsChecker(EventsChecker eventsChecker) {
-        this.eventsChecker = eventsChecker;
+    public void setEventsEmitter(EventsEmitter eventsEmitter) {
+        this.eventsEmitter = eventsEmitter;
     }
 
     @Override
-    public void setEventsHandler(EventsHandler eventsHandler) {
-        this.eventsHandler = eventsHandler;
+    public void setEventsCatcher(EventsCatcher eventsCatcher) {
+        this.eventsCatcher = eventsCatcher;
     }
 
     @Override
-    public void setMoveChecker(MoveChecker moveChecker) {
-        this.moveChecker = moveChecker;
+    public void setMoveValidator(MoveValidator moveValidator) {
+        this.moveValidator = moveValidator;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class DummyGameController implements GameController {
 
     @Override
     public void executeMoveIfLegal(ChessMove chessMove) throws IllegalMove {
-        if (moveChecker.check(chessMove, gameModel)) {
+        if (moveValidator.check(chessMove, gameModel)) {
             moveExecutor.execute(chessMove, gameModel);
         } else {
             throw new IllegalMove(chessMove);
@@ -55,6 +55,6 @@ public class DummyGameController implements GameController {
 
     @Override
     public void handleEvents() {
-        eventsHandler.handleEvents(eventsChecker.getEvents(gameModel), gameModel);
+        eventsCatcher.catchEvents(eventsEmitter.getEvents(gameModel), gameModel);
     }
 }

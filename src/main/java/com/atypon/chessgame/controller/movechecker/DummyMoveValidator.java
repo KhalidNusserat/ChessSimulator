@@ -1,7 +1,7 @@
 package com.atypon.chessgame.controller.movechecker;
 
-public class DummyMoveChecker extends DefaultMoveChecker {
-    public DummyMoveChecker() {
+public class DummyMoveValidator extends DefaultMoveValidator {
+    public DummyMoveValidator() {
         addRule(
                 (move, chessGameModel) -> true
         );

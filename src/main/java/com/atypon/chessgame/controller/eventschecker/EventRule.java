@@ -4,6 +4,6 @@ import com.atypon.chessgame.model.GameModel;
 
 import java.util.Collection;
 
-public interface EventChecker {
+public interface EventRule {
     Collection<ChessEvent> check(GameModel gameModel);
 }

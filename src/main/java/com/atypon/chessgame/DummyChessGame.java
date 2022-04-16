@@ -2,9 +2,9 @@ package com.atypon.chessgame;
 
 import com.atypon.chessgame.controller.GameController;
 import com.atypon.chessgame.controller.DummyGameController;
-import com.atypon.chessgame.controller.eventschecker.DummyEventsChecker;
-import com.atypon.chessgame.controller.eventshandler.DummyEventsHandler;
-import com.atypon.chessgame.controller.movechecker.DummyMoveChecker;
+import com.atypon.chessgame.controller.eventschecker.DummyEventsEmitter;
+import com.atypon.chessgame.controller.eventshandler.DummyEventsCatcher;
+import com.atypon.chessgame.controller.movechecker.DummyMoveValidator;
 import com.atypon.chessgame.controller.movechecker.IllegalMove;
 import com.atypon.chessgame.controller.moveexecutor.DefaultMoveExecutor;
 import com.atypon.chessgame.model.Color;
@@ -21,10 +21,10 @@ public class DummyChessGame implements ChessGame {
     public DummyChessGame(String whitePlayer, String blackPlayer) {
         gameModel = new DefaultGameModel(whitePlayer, blackPlayer);
         gameController = new DummyGameController();
-        gameController.setChessGameModel(gameModel);
-        gameController.setEventsChecker(new DummyEventsChecker());
-        gameController.setEventsHandler(new DummyEventsHandler());
-        gameController.setMoveChecker(new DummyMoveChecker());
+        gameController.setGameModel(gameModel);
+        gameController.setEventsEmitter(new DummyEventsEmitter());
+        gameController.setEventsCatcher(new DummyEventsCatcher());
+        gameController.setMoveValidator(new DummyMoveValidator());
         gameController.setMoveExecutor(new DefaultMoveExecutor());
         moveParser = new DefaultMoveParser();
     }

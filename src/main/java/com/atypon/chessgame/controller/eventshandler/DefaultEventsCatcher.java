@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DefaultEventsHandler implements EventsHandler {
+public class DefaultEventsCatcher implements EventsCatcher {
     private final Map<Class<? extends ChessEvent>, EventHandler> eventHandlers = new HashMap<>();
 
     @Override
@@ -21,7 +21,7 @@ public class DefaultEventsHandler implements EventsHandler {
     }
 
     @Override
-    public void handleEvents(List<ChessEvent> chessEvents, GameModel gameModel) {
+    public void catchEvents(List<ChessEvent> chessEvents, GameModel gameModel) {
         for (ChessEvent chessEvent : chessEvents) {
             eventHandlers.get(chessEvent.getClass()).handle(chessEvent, gameModel);
         }

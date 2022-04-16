@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DummyEventsChecker extends DefaultEventsChecker {
-    public DummyEventsChecker() {
-        addAllEventCheckers(
+public class DummyEventsEmitter extends DefaultEventsEmitter {
+    public DummyEventsEmitter() {
+        addAllEventRules(
                 chessGameModel -> {
                     List<ChessEvent> chessEvents = new ArrayList<>();
                     chessGameModel
@@ -28,7 +28,7 @@ public class DummyEventsChecker extends DefaultEventsChecker {
                 chessGameModel -> {
                     BoardState boardState = chessGameModel.getCurrentBoardState();
                     if (boardState.getPositionsOf(PieceType.KING).size() == 1) {
-                        BoardPosition positionOfKing = boardState.getPositionsOf(PieceType.KING).get(0);
+                        Position positionOfKing = boardState.getPositionsOf(PieceType.KING).get(0);
                         Color winnerColor = boardState.getPieceAt(positionOfKing).color();
                         return List.of(new CheckMateEvent(winnerColor));
                     }
