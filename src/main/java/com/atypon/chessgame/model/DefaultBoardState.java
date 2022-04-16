@@ -139,7 +139,7 @@ public class DefaultBoardState implements BoardState {
         return boardString.toString();
     }
 
-    static class DefaultIntermediateBoardState implements IntermediateBoardState {
+    private static class DefaultIntermediateBoardState implements IntermediateBoardState {
         private ChessPiece chessPiece = null;
 
         private final DefaultBoardState boardState;
