@@ -9,7 +9,7 @@ public class CheckMateEvent implements ChessEvent {
         this.winner = winner;
     }
 
-    public ChessColor getWinner() {
+    public ChessColor getWinnerColor() {
         return winner;
     }
 }
