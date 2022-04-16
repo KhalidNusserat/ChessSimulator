@@ -7,6 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         ChessGame chessGame = new DummyChessGame("Phoenix", "Maya");
+        chessGame.printCurrentBoard();
         while (!chessGame.isDone()) {
             if (chessGame.isWhiteTurn()) {
                 chessGame.playWhite(scanner.nextLine());
@@ -14,6 +15,7 @@ public class Main {
             else {
                 chessGame.playBlack(scanner.nextLine());
             }
+            chessGame.printCurrentBoard();
         }
         chessGame.printWinnerName();
         scanner.close();
