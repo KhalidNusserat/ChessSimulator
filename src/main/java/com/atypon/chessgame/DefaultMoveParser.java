@@ -12,23 +12,23 @@ public class DefaultMoveParser implements MoveParser {
 
     private static final String boardPositionPattern = "^[a-hA-H][1-8]$";
 
-    private void validateBoardPosition(String boardPosition) throws InvalidBoardPosition {
-        if (!boardPosition.matches(boardPositionPattern)) {
-            throw new InvalidBoardPosition(boardPosition);
+    private void validateBoardPositions(String... boardPositions) throws InvalidBoardPosition {
+        for (String boardPosition : boardPositions) {
+            if (!boardPosition.matches(boardPositionPattern)) {
+                throw new InvalidBoardPosition(boardPosition);
+            }
         }
     }
 
     @Override
     public ChessMove parse(String moveCommand, ChessColor playerColor) throws InvalidMoveCommand, InvalidBoardPosition {
-        Pattern startWithMove = Pattern.compile(commandPattern);
-        Matcher matcher = startWithMove.matcher(moveCommand);
-        if (!matcher.matches()) {
+        if (!moveCommand.matches(commandPattern)) {
             throw new InvalidMoveCommand(moveCommand);
         }
+        Matcher matcher = Pattern.compile(commandPattern).matcher(moveCommand);
         String from = matcher.group(1);
         String to = matcher.group(2);
-        validateBoardPosition(from);
-        validateBoardPosition(to);
+        validateBoardPositions(from, to);
         return new ChessMove(
                 playerColor,
                 BoardPosition.at(from),
