@@ -17,7 +17,7 @@ public class DefaultMoveExecutor implements MoveExecutor {
             Set<ChessPieceType> pieceTypes = Set.of(firstPiece.type(), secondPiece.type());
             if (pieceTypes.containsAll(List.of(ChessPieceType.ROOK, ChessPieceType.KING))) {
                 chessGameModel.setCurrentBoardState(
-                        chessGameModel.getCurrentBoardState().withSwapped(chessMove.from(), chessMove.to())
+                        chessGameModel.getCurrentBoardState().with(chessMove.from()).swappedWith(chessMove.to())
                 );
             }
         } else {

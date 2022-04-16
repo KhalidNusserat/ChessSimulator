@@ -5,15 +5,16 @@ import java.util.List;
 public interface BoardState {
     interface IntermediateBoardState {
         BoardState at(BoardPosition boardPosition);
+        BoardState swappedWith(BoardPosition otherBoardPosition);
     }
 
     ChessPiece getPieceAt(BoardPosition position);
 
     BoardState without(BoardPosition position);
 
-    BoardState withSwapped(BoardPosition firstPosition, BoardPosition secondPosition);
-
     IntermediateBoardState with(ChessPiece chessPiece);
+
+    IntermediateBoardState with(BoardPosition boardPosition);
 
     List<BoardPosition> getPositionsOf(ChessPieceType type);
 

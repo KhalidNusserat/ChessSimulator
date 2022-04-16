@@ -43,6 +43,16 @@ public class DefaultBoardState implements BoardState {
         return newBoardState;
     }
 
+    private BoardState withSwapped(BoardPosition firstPosition, BoardPosition secondPosition) {
+        DefaultBoardState newBoardState = new DefaultBoardState(this);
+        ChessPiece firstPiece = board.get(firstPosition);
+        ChessPiece secondPiece = board.get(secondPosition);
+        newBoardState = (DefaultBoardState) newBoardState
+                .with(secondPiece).at(firstPosition)
+                .with(firstPiece).at(secondPosition);
+        return newBoardState;
+    }
+
     @Override
     public ChessPiece getPieceAt(BoardPosition position) {
         return board.get(position);
@@ -56,26 +66,13 @@ public class DefaultBoardState implements BoardState {
     }
 
     @Override
-    public BoardState withSwapped(BoardPosition firstPosition, BoardPosition secondPosition) {
-        DefaultBoardState newBoardState = new DefaultBoardState(this);
-        ChessPiece firstPiece = board.get(firstPosition);
-        ChessPiece secondPiece = board.get(secondPosition);
-        if (secondPiece != null) {
-            newBoardState.board.put(firstPosition, secondPiece);
-        } else {
-            newBoardState.board.remove(firstPosition);
-        }
-        if (firstPiece != null) {
-            newBoardState.board.put(secondPosition, firstPiece);
-        } else {
-            newBoardState.board.remove(secondPosition);
-        }
-        return newBoardState;
+    public IntermediateBoardState with(ChessPiece chessPiece) {
+        return new DefaultIntermediateBoardState(chessPiece, this);
     }
 
     @Override
-    public IntermediateBoardState with(ChessPiece chessPiece) {
-        return new DefaultIntermediateBoardState(chessPiece, this);
+    public IntermediateBoardState with(BoardPosition boardPosition) {
+        return new DefaultIntermediateBoardState(boardPosition, this);
     }
 
     @Override
@@ -128,18 +125,30 @@ public class DefaultBoardState implements BoardState {
     }
 
     static class DefaultIntermediateBoardState implements IntermediateBoardState {
-        private final ChessPiece chessPiece;
+        private ChessPiece chessPiece = null;
 
         private final DefaultBoardState boardState;
+
+        private BoardPosition boardPosition = null;
 
         public DefaultIntermediateBoardState(ChessPiece chessPiece, DefaultBoardState boardState) {
             this.chessPiece = chessPiece;
             this.boardState = boardState;
         }
 
+        public DefaultIntermediateBoardState(BoardPosition boardPosition, DefaultBoardState boardState) {
+            this.boardPosition = boardPosition;
+            this.boardState = boardState;
+        }
+
         @Override
         public BoardState at(BoardPosition boardPosition) {
             return boardState.withPieceAt(chessPiece, boardPosition);
+        }
+
+        @Override
+        public BoardState swappedWith(BoardPosition otherBoardPosition) {
+            return boardState.withSwapped(boardPosition, otherBoardPosition);
         }
     }
 }
