@@ -9,7 +9,8 @@ import com.atypon.chessgame.model.DefaultChessGameModel;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class DummyEventCheckerTest {
     private EventsChecker eventsChecker;
