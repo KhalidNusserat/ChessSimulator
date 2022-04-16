@@ -1,16 +1,13 @@
 package com.atypon.chessgame.controller.eventschecker;
 
-import com.atypon.chessgame.model.ChessGameModel;
-import com.atypon.chessgame.model.ChessPiece;
-import com.atypon.chessgame.model.ChessPieceType;
+import com.atypon.chessgame.model.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 public class DummyEventsChecker extends DefaultEventsChecker {
-    public DummyEventsChecker(int numberOfStepsBeforeCheckmate) {
+    public DummyEventsChecker() {
         addAllEventCheckers(
                 chessGameModel -> {
                     List<ChessEvent> chessEvents = new ArrayList<>();
@@ -28,16 +25,14 @@ public class DummyEventsChecker extends DefaultEventsChecker {
                             .forEach(position -> chessEvents.add(new PawnPromotionEvent(position)));
                     return chessEvents;
                 },
-                new EventChecker() {
-                    private int counter = 0;
-
-                    @Override
-                    public Collection<ChessEvent> check(ChessGameModel chessGameModel) {
-                        if (++counter >= numberOfStepsBeforeCheckmate) {
-                            return List.of(new CheckMateEvent());
-                        }
-                        return Collections.emptyList();
+                chessGameModel -> {
+                    BoardState boardState = chessGameModel.getCurrentBoardState();
+                    if (boardState.getPositionsOf(ChessPieceType.KING).size() == 1) {
+                        BoardPosition positionOfKing = boardState.getPositionsOf(ChessPieceType.KING).get(0);
+                        ChessColor winnerColor = boardState.getPieceAt(positionOfKing).color();
+                        return List.of(new CheckMateEvent(winnerColor));
                     }
+                    return Collections.emptyList();
                 }
         );
     }
