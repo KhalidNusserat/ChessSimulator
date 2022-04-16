@@ -99,4 +99,27 @@ public class DefaultBoardState implements BoardState {
     public boolean contains(ChessPiece piece) {
         return !getPositionsOf(piece).isEmpty();
     }
+
+    @Override
+    public String toString() {
+        StringBuilder boardString = new StringBuilder();
+        for (int row = 8; row >= 1; row--) {
+            boardString.append(row).append(": ");
+            for (char col = 'A'; col <= 'H'; col++) {
+                String position = String.format("%c%d", col, row);
+                ChessPiece chessPiece = board.get(BoardPosition.at(position));
+                if (chessPiece != null) {
+                    boardString.append(chessPiece).append(" ");
+                } else {
+                    boardString.append("__ ");
+                }
+            }
+            boardString.append("\n");
+        }
+        boardString.append("   ");
+        for (char col = 'A'; col <= 'H'; col++) {
+            boardString.append(col).append("  ");
+        }
+        return boardString.toString();
+    }
 }
