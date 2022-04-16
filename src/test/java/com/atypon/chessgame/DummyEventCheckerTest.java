@@ -18,7 +18,7 @@ public class DummyEventCheckerTest {
 
     @Before
     public void beforeEach() {
-        eventsChecker = new DummyEventsChecker(2);
+        eventsChecker = new DummyEventsChecker();
         chessGameModel = new DefaultChessGameModel("A", "B");
     }
 
