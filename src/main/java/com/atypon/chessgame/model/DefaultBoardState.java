@@ -33,6 +33,16 @@ public class DefaultBoardState implements BoardState {
         board.put(BoardPosition.at("E" + otherPiecesLevel), new ChessPiece(ChessPieceType.KING, color));
     }
 
+    private BoardState withPieceAt(ChessPiece chessPiece, BoardPosition position) {
+        DefaultBoardState newBoardState = new DefaultBoardState(this);
+        if (chessPiece != null) {
+            newBoardState.board.put(position, chessPiece);
+        } else {
+            newBoardState.board.remove(position);
+        }
+        return newBoardState;
+    }
+
     @Override
     public ChessPiece getPieceAt(BoardPosition position) {
         return board.get(position);
@@ -64,14 +74,8 @@ public class DefaultBoardState implements BoardState {
     }
 
     @Override
-    public BoardState withPieceAt(ChessPiece chessPiece, BoardPosition position) {
-        DefaultBoardState newBoardState = new DefaultBoardState(this);
-        if (chessPiece != null) {
-            newBoardState.board.put(position, chessPiece);
-        } else {
-            newBoardState.board.remove(position);
-        }
-        return newBoardState;
+    public IntermediateBoardState with(ChessPiece chessPiece) {
+        return new DefaultIntermediateBoardState(chessPiece, this);
     }
 
     @Override
@@ -121,5 +125,21 @@ public class DefaultBoardState implements BoardState {
             boardString.append(col).append("  ");
         }
         return boardString.toString();
+    }
+
+    static class DefaultIntermediateBoardState implements IntermediateBoardState {
+        private final ChessPiece chessPiece;
+
+        private final DefaultBoardState boardState;
+
+        public DefaultIntermediateBoardState(ChessPiece chessPiece, DefaultBoardState boardState) {
+            this.chessPiece = chessPiece;
+            this.boardState = boardState;
+        }
+
+        @Override
+        public BoardState at(BoardPosition boardPosition) {
+            return boardState.withPieceAt(chessPiece, boardPosition);
+        }
     }
 }

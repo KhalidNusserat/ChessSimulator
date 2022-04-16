@@ -23,7 +23,8 @@ public class DefaultMoveExecutor implements MoveExecutor {
         } else {
             chessGameModel.setCurrentBoardState(
                     chessGameModel.getCurrentBoardState()
-                            .withPieceAt(firstPiece, chessMove.to())
+                            .with(firstPiece)
+                            .at(chessMove.to())
                             .without(chessMove.from())
             );
         }

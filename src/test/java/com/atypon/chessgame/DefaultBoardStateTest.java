@@ -89,7 +89,7 @@ public class DefaultBoardStateTest {
     public void testWithPieceAt() {
         com.atypon.chessgame.model.DefaultBoardState chessBoard = new com.atypon.chessgame.model.DefaultBoardState();
         ChessPiece newWhiteKing = new ChessPiece(ChessPieceType.KING, ChessColor.BLACK);
-        chessBoard = (com.atypon.chessgame.model.DefaultBoardState) chessBoard.withPieceAt(newWhiteKing, BoardPosition.at("D5"));
+        chessBoard = (com.atypon.chessgame.model.DefaultBoardState) chessBoard.with(newWhiteKing).at(BoardPosition.at("D5"));
         assertEquals(chessBoard.getPieceAt(BoardPosition.at("D5")), newWhiteKing);
     }
 }
