@@ -12,4 +12,6 @@ public interface ChessGame {
     boolean isBlackTurn();
 
     void printWinnerName();
+
+    void printCurrentBoard();
 }

@@ -70,4 +70,9 @@ public class DummyChessGame implements ChessGame {
     public void printWinnerName() {
         System.out.printf("The winner is %s", chessGameModel.getWinner());
     }
+
+    @Override
+    public void printCurrentBoard() {
+        System.out.println(chessGameModel.getCurrentBoardState());
+    }
 }
