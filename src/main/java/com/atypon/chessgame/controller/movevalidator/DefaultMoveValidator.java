@@ -27,7 +27,7 @@ public class DefaultMoveValidator implements MoveValidator {
     }
 
     @Override
-    public boolean check(ChessMove chessMove, GameModel gameModel) {
-        return moveRules.stream().allMatch(moveRule -> moveRule.checkMove(chessMove, gameModel));
+    public boolean check(Move move, GameModel gameModel) {
+        return moveRules.stream().allMatch(moveRule -> moveRule.checkMove(move, gameModel));
     }
 }

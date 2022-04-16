@@ -2,7 +2,7 @@ package com.atypon.chessgame.controller;
 
 import com.atypon.chessgame.controller.eventsemitter.EventsEmitter;
 import com.atypon.chessgame.controller.eventscatcher.EventsCatcher;
-import com.atypon.chessgame.controller.movevalidator.ChessMove;
+import com.atypon.chessgame.controller.movevalidator.Move;
 import com.atypon.chessgame.controller.movevalidator.IllegalMove;
 import com.atypon.chessgame.controller.movevalidator.MoveValidator;
 import com.atypon.chessgame.controller.moveexecutor.MoveExecutor;
@@ -45,11 +45,11 @@ public class DummyGameController implements GameController {
     }
 
     @Override
-    public void executeMoveIfLegal(ChessMove chessMove) throws IllegalMove {
-        if (moveValidator.check(chessMove, gameModel)) {
-            moveExecutor.execute(chessMove, gameModel);
+    public void executeMoveIfLegal(Move move) throws IllegalMove {
+        if (moveValidator.check(move, gameModel)) {
+            moveExecutor.execute(move, gameModel);
         } else {
-            throw new IllegalMove(chessMove);
+            throw new IllegalMove(move);
         }
     }
 

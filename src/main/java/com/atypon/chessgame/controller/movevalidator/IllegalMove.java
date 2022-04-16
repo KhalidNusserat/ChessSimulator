@@ -8,7 +8,7 @@ public class IllegalMove extends Exception {
         super(message);
     }
 
-    public IllegalMove(ChessMove chessMove) {
-        super(chessMove + " is an illegal move.");
+    public IllegalMove(Move move) {
+        super(move + " is an illegal move.");
     }
 }

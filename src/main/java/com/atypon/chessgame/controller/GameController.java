@@ -2,7 +2,7 @@ package com.atypon.chessgame.controller;
 
 import com.atypon.chessgame.controller.eventsemitter.EventsEmitter;
 import com.atypon.chessgame.controller.eventscatcher.EventsCatcher;
-import com.atypon.chessgame.controller.movevalidator.ChessMove;
+import com.atypon.chessgame.controller.movevalidator.Move;
 import com.atypon.chessgame.controller.movevalidator.IllegalMove;
 import com.atypon.chessgame.controller.movevalidator.MoveValidator;
 import com.atypon.chessgame.controller.moveexecutor.MoveExecutor;
@@ -19,7 +19,7 @@ public interface GameController {
 
     void setMoveExecutor(MoveExecutor moveExecutor);
 
-    void executeMoveIfLegal(ChessMove chessMove) throws IllegalMove;
+    void executeMoveIfLegal(Move move) throws IllegalMove;
 
     void handleEvents();
 }

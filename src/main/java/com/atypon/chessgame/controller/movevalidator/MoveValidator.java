@@ -11,5 +11,5 @@ public interface MoveValidator {
 
     void addAllRules(MoveRule... moveRules);
 
-    boolean check(ChessMove chessMove, GameModel defaultGameModel);
+    boolean check(Move move, GameModel defaultGameModel);
 }
