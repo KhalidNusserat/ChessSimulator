@@ -22,7 +22,7 @@ public class DummyChessGame implements ChessGame {
         chessGameModel = new DefaultChessGameModel(whitePlayer, blackPlayer);
         chessGameController = new DummyGameController();
         chessGameController.setChessGameModel(chessGameModel);
-        chessGameController.setEventsChecker(new DummyEventsChecker(20));
+        chessGameController.setEventsChecker(new DummyEventsChecker());
         chessGameController.setEventsHandler(new DummyEventsHandler());
         chessGameController.setMoveChecker(new DummyMoveChecker());
         chessGameController.setMoveExecutor(new DefaultMoveExecutor());
