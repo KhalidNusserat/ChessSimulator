@@ -16,13 +16,13 @@ public class DummyEventsChecker extends DefaultEventsChecker {
                             .getPositionsOf(ChessPiece.getWhite(ChessPieceType.PAWN))
                             .stream()
                             .filter(position -> position.getRow() == '8')
-                            .forEach(position -> chessEvents.add(new PawnPromotionEvent(position)));
+                            .forEach(position -> chessEvents.add(PawnPromotionEvent.at(position)));
                     chessGameModel
                             .getCurrentBoardState()
                             .getPositionsOf(ChessPiece.getBlack(ChessPieceType.PAWN))
                             .stream()
                             .filter(position -> position.getRow() == '1')
-                            .forEach(position -> chessEvents.add(new PawnPromotionEvent(position)));
+                            .forEach(position -> chessEvents.add(PawnPromotionEvent.at(position)));
                     return chessEvents;
                 },
                 chessGameModel -> {
