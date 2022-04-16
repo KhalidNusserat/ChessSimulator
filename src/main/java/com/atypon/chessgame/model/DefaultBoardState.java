@@ -3,6 +3,7 @@ package com.atypon.chessgame.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class DefaultBoardState implements BoardState {
     private final Map<BoardPosition, ChessPiece> board = new HashMap<>();
@@ -44,13 +45,11 @@ public class DefaultBoardState implements BoardState {
     }
 
     private BoardState withSwapped(BoardPosition firstPosition, BoardPosition secondPosition) {
-        DefaultBoardState newBoardState = new DefaultBoardState(this);
         ChessPiece firstPiece = board.get(firstPosition);
         ChessPiece secondPiece = board.get(secondPosition);
-        newBoardState = (DefaultBoardState) newBoardState
+        return this
                 .with(secondPiece).at(firstPosition)
                 .with(firstPiece).at(secondPosition);
-        return newBoardState;
     }
 
     @Override
@@ -78,16 +77,14 @@ public class DefaultBoardState implements BoardState {
     @Override
     public List<BoardPosition> getPositionsOf(ChessPieceType type) {
         return board.keySet().stream()
-                .filter(board::containsKey)
-                .filter(position -> board.get(position).type().equals(type))
+                .filter(boardPosition -> board.get(boardPosition).type() == type)
                 .toList();
     }
 
     @Override
     public List<BoardPosition> getPositionsOf(ChessPiece piece) {
         return board.keySet().stream()
-                .filter(board::containsKey)
-                .filter(position -> board.get(position).equals(piece))
+                .filter(boardPosition -> board.get(boardPosition).equals(piece))
                 .toList();
     }
 
@@ -99,6 +96,24 @@ public class DefaultBoardState implements BoardState {
     @Override
     public boolean contains(ChessPiece piece) {
         return !getPositionsOf(piece).isEmpty();
+    }
+
+    @Override
+    public Optional<BoardPosition> getWhiteKingPosition() {
+        ChessPiece whiteKing = ChessPiece.getWhite(ChessPieceType.KING);
+        if (!board.containsValue(whiteKing)) {
+            return Optional.empty();
+        }
+        return Optional.of(getPositionsOf(whiteKing).get(0));
+    }
+
+    @Override
+    public Optional<BoardPosition> getBlackKingPosition() {
+        ChessPiece blackKing = ChessPiece.getBlack(ChessPieceType.KING);
+        if (!board.containsValue(blackKing)) {
+            return Optional.empty();
+        }
+        return Optional.of(getPositionsOf(blackKing).get(0));
     }
 
     @Override

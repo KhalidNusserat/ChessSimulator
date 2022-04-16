@@ -1,6 +1,7 @@
 package com.atypon.chessgame.model;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BoardState {
     interface IntermediateBoardState {
@@ -23,4 +24,8 @@ public interface BoardState {
     boolean contains(ChessPieceType type);
 
     boolean contains(ChessPiece piece);
+
+    Optional<BoardPosition> getWhiteKingPosition();
+
+    Optional<BoardPosition> getBlackKingPosition();
 }
