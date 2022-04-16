@@ -2,7 +2,7 @@ package com.atypon.chessgame.model;
 
 import java.util.Objects;
 
-public class BoardPosition{
+public class BoardPosition {
     private final String position;
 
     public BoardPosition(String position) {

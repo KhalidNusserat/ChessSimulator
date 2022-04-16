@@ -9,10 +9,10 @@ public class Main {
         ChessGame chessGame = new DummyChessGame("Phoenix", "Maya");
         chessGame.printCurrentBoard();
         while (!chessGame.isDone()) {
+            System.out.print(" >> ");
             if (chessGame.isWhiteTurn()) {
                 chessGame.playWhite(scanner.nextLine());
-            }
-            else {
+            } else {
                 chessGame.playBlack(scanner.nextLine());
             }
             chessGame.printCurrentBoard();
