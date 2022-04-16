@@ -27,10 +27,11 @@ public class DummyEventsEmitter extends DefaultEventsEmitter {
                 },
                 chessGameModel -> {
                     BoardState boardState = chessGameModel.getCurrentBoardState();
-                    if (boardState.getPositionsOf(PieceType.KING).size() == 1) {
-                        Position positionOfKing = boardState.getPositionsOf(PieceType.KING).get(0);
-                        Color winnerColor = boardState.getPieceAt(positionOfKing).color();
-                        return List.of(new CheckMateEvent(winnerColor));
+                    if (boardState.getWhiteKingPosition().isEmpty()) {
+                        return List.of(new CheckMateEvent(Color.BLACK));
+                    }
+                    if (boardState.getBlackKingPosition().isEmpty()) {
+                        return List.of(new CheckMateEvent(Color.WHITE));
                     }
                     return Collections.emptyList();
                 }
