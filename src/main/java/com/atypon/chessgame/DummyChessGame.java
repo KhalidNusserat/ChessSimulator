@@ -35,7 +35,7 @@ public class DummyChessGame implements ChessGame {
             chessGameController.executeMoveIfLegal(moveParser.parse(move, ChessColor.WHITE));
             chessGameController.handleEvents();
             chessGameModel.changeTurns();
-        } catch (IllegalMove e) {
+        } catch (IllegalMove | InvalidMoveCommand e) {
             System.out.println(e.getMessage());
         }
     }
@@ -46,7 +46,7 @@ public class DummyChessGame implements ChessGame {
             chessGameController.executeMoveIfLegal(moveParser.parse(move, ChessColor.BLACK));
             chessGameController.handleEvents();
             chessGameModel.changeTurns();
-        } catch (IllegalMove e) {
+        } catch (IllegalMove | InvalidMoveCommand e) {
             System.out.println(e.getMessage());
         }
     }

@@ -5,21 +5,28 @@ import com.atypon.chessgame.model.BoardPosition;
 import com.atypon.chessgame.model.ChessColor;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.*;
 
 public class DefaultChessMoveParserTest {
     @Test
     public void shouldParse() {
         DefaultMoveParser parser = new DefaultMoveParser();
-        assertEquals(
-                parser.parse("move A1 B2", ChessColor.WHITE),
-                new ChessMove(ChessColor.WHITE, BoardPosition.at("A1"), BoardPosition.at("B2"))
-        );
-        assertEquals(
-                parser.parse("move  B1  C4 ", ChessColor.BLACK),
-                new ChessMove(ChessColor.BLACK, BoardPosition.at("B1"), BoardPosition.at("C4"))
-        );
+        try {
+            assertEquals(
+                    parser.parse("move A1 B2", ChessColor.WHITE),
+                    new ChessMove(ChessColor.WHITE, BoardPosition.at("A1"), BoardPosition.at("B2"))
+            );
+        } catch (InvalidMoveCommand e) {
+            fail();
+        }
+        try {
+            assertEquals(
+                    parser.parse("move  B1  C4 ", ChessColor.BLACK),
+                    new ChessMove(ChessColor.BLACK, BoardPosition.at("B1"), BoardPosition.at("C4"))
+            );
+        } catch (InvalidMoveCommand e) {
+            fail();
+        }
         assertThrows(
                 IllegalArgumentException.class,
                 () -> parser.parse("mv a1 b2", ChessColor.BLACK)
