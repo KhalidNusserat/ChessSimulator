@@ -16,12 +16,12 @@ public class DefaultMoveExecutor implements MoveExecutor {
         if (firstPiece != null && secondPiece != null && firstPiece.color() == secondPiece.color()) {
             Set<PieceType> pieceTypes = Set.of(firstPiece.type(), secondPiece.type());
             if (pieceTypes.containsAll(List.of(PieceType.ROOK, PieceType.KING))) {
-                gameModel.setCurrentBoardState(
+                gameModel.updateCurrentBoardState(
                         gameModel.getCurrentBoardState().with(move.from()).swappedWith(move.to())
                 );
             }
         } else {
-            gameModel.setCurrentBoardState(
+            gameModel.updateCurrentBoardState(
                     gameModel.getCurrentBoardState()
                             .with(firstPiece)
                             .at(move.to())

@@ -8,7 +8,7 @@ public interface GameModel {
 
     BoardState getCurrentBoardState();
 
-    void setCurrentBoardState(BoardState boardState);
+    void updateCurrentBoardState(BoardState boardState);
 
     Collection<BoardState> getBoardStates();
 

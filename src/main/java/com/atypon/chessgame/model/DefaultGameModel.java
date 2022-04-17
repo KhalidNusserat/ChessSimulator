@@ -40,7 +40,7 @@ public class DefaultGameModel implements GameModel {
     }
 
     @Override
-    public void setCurrentBoardState(BoardState boardState) {
+    public void updateCurrentBoardState(BoardState boardState) {
         boardStates.push(boardState);
     }
 
