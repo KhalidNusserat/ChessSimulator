@@ -1,6 +1,7 @@
 package com.atypon.chessgame.model;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.Stack;
 
 public class DefaultGameModel implements GameModel {
@@ -59,8 +60,8 @@ public class DefaultGameModel implements GameModel {
     }
 
     @Override
-    public Player getWinner() {
-        return winner;
+    public Optional<Player> getWinner() {
+        return (winner == null ? Optional.empty() : Optional.of(winner));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.atypon.chessgame.model;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public interface GameModel {
     void changeTurns();
@@ -15,7 +16,7 @@ public interface GameModel {
 
     void setDone(boolean done);
 
-    Player getWinner();
+    Optional<Player> getWinner();
 
     void setWinner(Player winner);
 

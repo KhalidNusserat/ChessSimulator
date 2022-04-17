@@ -10,6 +10,9 @@ import com.atypon.chessgame.controller.moveexecutor.DefaultMoveExecutor;
 import com.atypon.chessgame.model.Color;
 import com.atypon.chessgame.model.GameModel;
 import com.atypon.chessgame.model.DefaultGameModel;
+import com.atypon.chessgame.model.Player;
+
+import java.util.Optional;
 
 public class DummyChessGame implements ChessGame {
     private final GameModel gameModel;
@@ -68,7 +71,12 @@ public class DummyChessGame implements ChessGame {
 
     @Override
     public void printWinnerName() {
-        System.out.printf("The winner is %s", gameModel.getWinner().name());
+        Optional<Player> winner = gameModel.getWinner();
+        if (winner.isEmpty()) {
+            System.out.println("There are no winners yet.");
+        } else {
+            System.out.println("The winner is " + winner.get().name());
+        }
     }
 
     @Override
