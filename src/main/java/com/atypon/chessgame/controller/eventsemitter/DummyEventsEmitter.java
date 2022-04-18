@@ -1,6 +1,9 @@
 package com.atypon.chessgame.controller.eventsemitter;
 
-import com.atypon.chessgame.model.*;
+import com.atypon.chessgame.model.BoardState;
+import com.atypon.chessgame.model.Color;
+import com.atypon.chessgame.model.Piece;
+import com.atypon.chessgame.model.PieceType;
 
 import java.util.ArrayList;
 import java.util.Collections;

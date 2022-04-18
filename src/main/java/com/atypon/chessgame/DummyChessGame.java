@@ -1,16 +1,16 @@
 package com.atypon.chessgame;
 
-import com.atypon.chessgame.controller.GameController;
 import com.atypon.chessgame.controller.DummyGameController;
-import com.atypon.chessgame.controller.eventsemitter.DummyEventsEmitter;
+import com.atypon.chessgame.controller.GameController;
 import com.atypon.chessgame.controller.eventscatcher.DummyEventsCatcher;
+import com.atypon.chessgame.controller.eventsemitter.DummyEventsEmitter;
+import com.atypon.chessgame.controller.moveexecutor.DefaultMoveExecutor;
 import com.atypon.chessgame.controller.movevalidator.DummyMoveValidator;
 import com.atypon.chessgame.controller.movevalidator.IllegalMove;
-import com.atypon.chessgame.controller.moveexecutor.DefaultMoveExecutor;
-import com.atypon.chessgame.model.Color;
-import com.atypon.chessgame.model.GameModel;
-import com.atypon.chessgame.model.DefaultGameModel;
-import com.atypon.chessgame.model.Player;
+import com.atypon.chessgame.model.*;
+import com.atypon.chessgame.rendering.BoardRenderer;
+import com.atypon.chessgame.rendering.DefaultBoardRenderer;
+import com.atypon.chessgame.rendering.DefaultPieceStringifier;
 
 import java.util.Optional;
 
@@ -21,6 +21,8 @@ public class DummyChessGame implements ChessGame {
 
     private final MoveParser moveParser;
 
+    private final BoardRenderer boardRenderer;
+
     public DummyChessGame(String whitePlayer, String blackPlayer) {
         gameModel = new DefaultGameModel(whitePlayer, blackPlayer);
         gameController = new DummyGameController();
@@ -30,6 +32,13 @@ public class DummyChessGame implements ChessGame {
         gameController.setMoveValidator(new DummyMoveValidator());
         gameController.setMoveExecutor(new DefaultMoveExecutor());
         moveParser = new DefaultMoveParser();
+        boardRenderer = new DefaultBoardRenderer();
+        boardRenderer.setPieceStringifier(new DefaultPieceStringifier());
+    }
+
+    @Override
+    public BoardState getCurrentBoardState() {
+        return gameModel.getCurrentBoardState();
     }
 
     @Override
@@ -38,7 +47,7 @@ public class DummyChessGame implements ChessGame {
             gameController.executeMoveIfLegal(moveParser.parse(move, Color.WHITE));
             gameController.handleEvents();
             gameModel.changeTurns();
-        } catch (IllegalMove | InvalidMoveCommand | InvalidBoardPosition e) {
+        } catch (IllegalMove | InvalidMoveCommandException | InvalidBoardPositionException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -49,7 +58,7 @@ public class DummyChessGame implements ChessGame {
             gameController.executeMoveIfLegal(moveParser.parse(move, Color.BLACK));
             gameController.handleEvents();
             gameModel.changeTurns();
-        } catch (IllegalMove | InvalidMoveCommand | InvalidBoardPosition e) {
+        } catch (IllegalMove | InvalidMoveCommandException | InvalidBoardPositionException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -81,6 +90,6 @@ public class DummyChessGame implements ChessGame {
 
     @Override
     public void printCurrentBoard() {
-        System.out.println(gameModel.getCurrentBoardState());
+        boardRenderer.drawBoard(getCurrentBoardState());
     }
 }

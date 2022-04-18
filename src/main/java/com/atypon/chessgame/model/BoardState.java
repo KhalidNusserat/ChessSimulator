@@ -3,19 +3,14 @@ package com.atypon.chessgame.model;
 import java.util.List;
 import java.util.Optional;
 
-public interface BoardState {
-    interface IntermediateBoardState {
-        BoardState at(Position position);
-        BoardState swappedWith(Position otherPosition);
-    }
-
-    Piece getPieceAt(Position position);
+public interface BoardState extends Iterable<List<Optional<Piece>>> {
+    Optional<Piece> getPieceAt(Position position);
 
     BoardState without(Position position);
 
-    IntermediateBoardState with(Piece piece);
+    IntermediateBoardStateAt with(Piece piece);
 
-    IntermediateBoardState with(Position position);
+    IntermediateBoardStateSwappedWith with(Position position);
 
     List<Position> getPositionsOf(PieceType type);
 
@@ -28,4 +23,12 @@ public interface BoardState {
     Optional<Position> getWhiteKingPosition();
 
     Optional<Position> getBlackKingPosition();
+
+    interface IntermediateBoardStateAt {
+        BoardState at(Position position);
+    }
+
+    interface IntermediateBoardStateSwappedWith {
+        BoardState swappedWith(Position otherPosition);
+    }
 }

@@ -1,9 +1,6 @@
 package com.atypon.chessgame.model;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class DefaultBoardState implements BoardState {
     private final Map<Position, Piece> board = new HashMap<>();
@@ -53,8 +50,13 @@ public class DefaultBoardState implements BoardState {
     }
 
     @Override
-    public Piece getPieceAt(Position position) {
-        return board.get(position);
+    public Optional<Piece> getPieceAt(Position position) {
+        Piece piece = board.get(position);
+        if (piece == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(piece);
+        }
     }
 
     @Override
@@ -65,13 +67,13 @@ public class DefaultBoardState implements BoardState {
     }
 
     @Override
-    public IntermediateBoardState with(Piece piece) {
-        return new DefaultIntermediateBoardState(piece, this);
+    public IntermediateBoardStateAt with(Piece piece) {
+        return new DefaultIntermediateBoardStateAt(piece, this);
     }
 
     @Override
-    public IntermediateBoardState with(Position position) {
-        return new DefaultIntermediateBoardState(position, this);
+    public IntermediateBoardStateSwappedWith with(Position position) {
+        return new DefaultIntermediateBoardStateSwappedWith(position, this);
     }
 
     @Override
@@ -117,53 +119,44 @@ public class DefaultBoardState implements BoardState {
     }
 
     @Override
-    public String toString() {
-        StringBuilder boardString = new StringBuilder();
-        for (int row = 8; row >= 1; row--) {
-            boardString.append(row).append(": ");
-            for (char col = 'A'; col <= 'H'; col++) {
-                String position = String.format("%c%d", col, row);
-                Piece piece = board.get(Position.at(position));
-                if (piece != null) {
-                    boardString.append(piece).append(" ");
-                } else {
-                    boardString.append("__ ");
-                }
-            }
-            boardString.append("\n");
-        }
-        boardString.append("   ");
-        for (char col = 'A'; col <= 'H'; col++) {
-            boardString.append(col).append("  ");
-        }
-        return boardString.toString();
+    public DefaultBoardStateIterator iterator() {
+        return new DefaultBoardStateIterator();
     }
 
-    private static class DefaultIntermediateBoardState implements IntermediateBoardState {
-        private Piece piece = null;
-
-        private final DefaultBoardState boardState;
-
-        private Position position = null;
-
-        public DefaultIntermediateBoardState(Piece piece, DefaultBoardState boardState) {
-            this.piece = piece;
-            this.boardState = boardState;
-        }
-
-        public DefaultIntermediateBoardState(Position position, DefaultBoardState boardState) {
-            this.position = position;
-            this.boardState = boardState;
-        }
-
+    private record DefaultIntermediateBoardStateAt(Piece piece,
+                                                   DefaultBoardState boardState) implements IntermediateBoardStateAt {
         @Override
         public BoardState at(Position position) {
             return boardState.withPieceAt(piece, position);
         }
+    }
 
+    private record DefaultIntermediateBoardStateSwappedWith(Position position,
+                                                            DefaultBoardState boardState)
+            implements IntermediateBoardStateSwappedWith {
         @Override
         public BoardState swappedWith(Position otherPosition) {
             return boardState.withSwapped(position, otherPosition);
+        }
+    }
+
+    private class DefaultBoardStateIterator implements Iterator<List<Optional<Piece>>> {
+        private int row = 8;
+
+        @Override
+        public boolean hasNext() {
+            return row != 0;
+        }
+
+        @Override
+        public List<Optional<Piece>> next() {
+            List<Optional<Piece>> pieces = new ArrayList<>();
+            for (char col = 'A'; col <= 'H'; col++) {
+                String position = String.format("%c%d", col, row);
+                pieces.add(getPieceAt(Position.at(position)));
+            }
+            row--;
+            return pieces;
         }
     }
 }
