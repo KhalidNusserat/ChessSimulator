@@ -50,7 +50,6 @@ public class DummyChessGame implements ChessGame {
         try {
             gameController.executeMoveIfLegal(moveParser.parse(move, Color.WHITE));
             gameController.handleEvents();
-            gameModel.changeTurns();
         } catch (IllegalMove | InvalidMoveCommandException | InvalidBoardPositionException e) {
             System.out.println(e.getMessage());
         }
@@ -61,7 +60,6 @@ public class DummyChessGame implements ChessGame {
         try {
             gameController.executeMoveIfLegal(moveParser.parse(move, Color.BLACK));
             gameController.handleEvents();
-            gameModel.changeTurns();
         } catch (IllegalMove | InvalidMoveCommandException | InvalidBoardPositionException e) {
             System.out.println(e.getMessage());
         }

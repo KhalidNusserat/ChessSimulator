@@ -48,6 +48,7 @@ public class DummyGameController implements GameController {
     public void executeMoveIfLegal(Move move) throws IllegalMove {
         if (moveValidator.check(move, gameModel)) {
             moveExecutor.execute(move, gameModel);
+            gameModel.changeTurns();
         } else {
             throw new IllegalMove(move);
         }
