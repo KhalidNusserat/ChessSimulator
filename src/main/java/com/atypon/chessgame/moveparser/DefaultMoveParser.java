@@ -1,4 +1,4 @@
-package com.atypon.chessgame;
+package com.atypon.chessgame.moveparser;
 
 import com.atypon.chessgame.controller.movevalidator.Move;
 import com.atypon.chessgame.model.Color;

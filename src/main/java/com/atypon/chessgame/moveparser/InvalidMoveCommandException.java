@@ -1,4 +1,4 @@
-package com.atypon.chessgame;
+package com.atypon.chessgame.moveparser;
 
 public class InvalidMoveCommandException extends Exception {
     public InvalidMoveCommandException() {

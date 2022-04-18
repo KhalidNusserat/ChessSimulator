@@ -1,4 +1,4 @@
-package com.atypon.chessgame;
+package com.atypon.chessgame.moveparser;
 
 public class InvalidBoardPositionException extends Exception {
     public InvalidBoardPositionException() {
